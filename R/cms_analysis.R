@@ -2,7 +2,7 @@
 #' general attributes as well as graphical distribution outputs.
 #'
 #' @param raw requires the raw data list (also input in the cms_load function)
-#' @param thresholds specification of the threshold values from the listed output of cms_clusters (e.g. cms_cl[[1]] and cms_cl[[2]])
+#' @param thresholds specification of the threshold values from the listed output of cms_clusters 
 #' @param cluster_distribution output from the cms_cluster function (IMPORTANT: scorevars requires a vector of input variables!)
 #' @param savepath include the path for the baplot here (no name spec for the plot necessary, it is called "Cluster_distros.png")
 #' 
@@ -95,7 +95,7 @@ cms_analysis <- function(raw, thresholds, cluster_distribution, savepath=NA){
   }
     
 
-return(list(distr_means, p))
+  return(list(distr_means, p))
 }
 
 
