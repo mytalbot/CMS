@@ -1,4 +1,6 @@
-#' Takes in the results from the cms_clusters function (frequency distributions of each run of the 80% subsample of the training data) and calculates
+#' cms analysis
+#' 
+#' Takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsample of the training data) and calculates
 #' general attributes as well as graphical distribution outputs.
 #'
 #' @param raw requires the raw data list (also input in the cms_load function)

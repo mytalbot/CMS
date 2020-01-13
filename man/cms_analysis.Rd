@@ -2,15 +2,14 @@
 % Please edit documentation in R/cms_analysis.R
 \name{cms_analysis}
 \alias{cms_analysis}
-\title{Takes in the results from the cms_clusters function (frequency distributions of each run of the 80% subsample of the training data) and calculates
-general attributes as well as graphical distribution outputs.}
+\title{cms analysis}
 \usage{
 cms_analysis(raw, thresholds, cluster_distribution, savepath = NA)
 }
 \arguments{
 \item{raw}{requires the raw data list (also input in the cms_load function)}
 
-\item{thresholds}{specification of the threshold values from the listed output of cms_clusters (e.g. cms_cl[[1]] and cms_cl[[2]])}
+\item{thresholds}{specification of the threshold values from the listed output of cms_clusters}
 
 \item{cluster_distribution}{output from the cms_cluster function (IMPORTANT: scorevars requires a vector of input variables!)}
 
@@ -20,6 +19,6 @@ cms_analysis(raw, thresholds, cluster_distribution, savepath = NA)
 data.frame
 }
 \description{
-Takes in the results from the cms_clusters function (frequency distributions of each run of the 80% subsample of the training data) and calculates
+Takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsample of the training data) and calculates
 general attributes as well as graphical distribution outputs.
 }

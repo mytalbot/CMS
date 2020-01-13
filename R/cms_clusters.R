@@ -8,17 +8,18 @@
 #' @param file path and filename as a string (e.g. C:/testfolder/testdata.txt)
 #' @param remove_this specification of columheaders that shall be removed from the data 
 #' 
-#' @import Hmisc
 #' @import made4 
+#' @importFrom ade4 dudi.pca
 #' @import RColorBrewer 
 #' @import gplots
-#' @importFrom ade4 dudi.pca
+#' @import scatterplot3d
+#' @import lattice
 #' @import caret
 #' @import reshape2
 #' @import plyr
 #' @import corrplot
 #' 
-#' @return list
+#' @return 
 #'
 #' @export
 #'
