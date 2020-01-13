@@ -1,13 +1,45 @@
 Package: cms
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
+Type: Package
+Title: Composite Measure Schemes for Severity Assessment in Animal Research
+Version: 0.0.9000
+Date: 2020-01-13
+Author: c(
+    person("Roelof Maarten", "van Dijk", role = "aut" ),     
+    person("André", "Bleich", role = "ctb" ), 
+    person("René", "Tolba", role = "ctb" ), 
+    person("Ines", "Koska", role = "ctb" ), 
+    person("Isabel", "Seiffert", role = "ctb" ), 
+    person("Christina", "Möller", role = "ctb" ), 
+    person("Valentina", "Di Liberto", role = "ctb" ), 
+    person("André", "Bleich", role = "ctb" ), 
+    person(given = "Steven",
+           family = "Talbot",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "talbot.steven@mh-hannover.de",
+           comment = c(ORCID = "0000-0002-9062-4065")),
+    person("Heidrun", "Potschka", role = "aut" ))
+Maintainer: Steven R. Talbot <talbot.steven@mh-hannover.de>
+Description: The packages uses tabular data from rat epilepsy studies and applies a composite measures schemes (via PCA) to select the most prominent 
+    features. Further, variables can be selected to perform cluster analysis on a selected subset of variables (composite score) to assess the cluster
+    distribution of severity in various experimental states and animal models.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+BugReports: https://github.com/mytalbot/cms/issues
+Depends: R (>= 2.10)
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr
+Imports: Hmisc,
+    corrplot,
+    made4,
+    caret,
+    ggplot2,
+    reshape2,
+    plyr,
+    ade4,
+    RColorBrewer,
+    gplots
+URL: https://github.com/mytalbot/cms
+
+
+
