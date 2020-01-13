@@ -7,6 +7,7 @@ use_r("cms_load")
 use_r("cms_clusters")
 use_r("cms_analysis")
 
+install_github("mytalbot/cms")
 
 
 library(cms)
