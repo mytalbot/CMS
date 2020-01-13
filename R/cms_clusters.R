@@ -9,10 +9,10 @@
 #' @param remove_this specification of columheaders that shall be removed from the data 
 #' 
 #' @import Hmisc
-#' @import ade4 
+#' @import made4 
 #' @import RColorBrewer 
 #' @import gplots
-#' @import made4
+#' @importFrom ade4 dudi.pca
 #' @import caret
 #' @import reshape2
 #' @import plyr
