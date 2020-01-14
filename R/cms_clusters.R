@@ -8,8 +8,8 @@
 #' @param file path and filename as a string (e.g. C:/testfolder/testdata.txt)
 #' @param remove_this specification of columheaders that shall be removed from the data 
 #' 
+#' @import ade4
 #' @import made4 
-#' @importFrom ade4 dudi.pca
 #' @import RColorBrewer 
 #' @import gplots
 #' @import scatterplot3d
@@ -19,13 +19,15 @@
 #' @import plyr
 #' @import corrplot
 #' 
-#' @return 
 #'
 #' @export
 #'
 #'
 cms_clusters  <- function(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", varstart=14, exclude="Seizures_n",
                           scorevars=NA){
+  
+  library("ade4")
+  
   # prepare the framework
   PC1loadings <- data.frame(matrix(nrow = 100, ncol = 10))
   PC2loadings <- data.frame(matrix(nrow = 100, ncol = 10))
@@ -61,6 +63,7 @@ cms_clusters  <- function(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idva
     
     # do the PCA
     d_pca_ord <- ord((d_pca), type="pca")
+
     
     ### extract the LOADINGs and sort them
     temp            <- sqrt((d_pca_ord$ord$co[,1:2])^2)

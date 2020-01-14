@@ -13,9 +13,6 @@ cms_clusters(raw = raw, runs = 100, emptysize = 0.2,
 
 \item{remove_this}{specification of columheaders that shall be removed from the data}
 }
-\value{
-
-}
 \description{
 The algorithm takes the cleaned input data, does some curation for missing values and then calculates the composite measures schemes.
 The function can be used in two ways: 1. with the scorevars set to NA the data are screened for the most prominent feature contributions; 2. 
