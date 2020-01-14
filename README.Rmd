@@ -1,0 +1,22 @@
+---
+  output: github_document
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+## Installation
+You can install the development version from [GitHub](https://github.com/) with:
+  
+``` r
+# install.packages("devtools")
+devtools::install_github("mytalbot/cms")
+library(endpointR)
+```
+
