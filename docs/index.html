@@ -10,7 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Composite Measure Schemes for Severity Assessment in Animal Research">
-<meta property="og:description" content="The packages uses tabular data from rat epilepsy studies and applies a composite measures schemes (via PCA) to select the most prominent 
+<meta property="og:description" content="The packages uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to identify the most prominent 
    features. Further, variables can be selected to perform cluster analysis on a selected subset of variables (composite score) to assess the cluster
    distribution of severity in various experimental states and animal models.">
 <meta property="og:image" content="/logo.png">
@@ -51,6 +51,9 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -83,9 +86,9 @@
 <div id="composite-measure-schemes-cms" class="section level1">
 <h1 class="hasAnchor">
 <a href="#composite-measure-schemes-cms" class="anchor"></a>Composite measure schemes (cms)</h1>
-<p>The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups in the data and can be compared within models in terms of severity assessment.</p>
 <!-- badges: start -->
-<p><a href="https://travis-ci.org/r-lib/usethis"><img src="https://travis-ci.org/mytalbot/cms.svg?branch=master" alt="Travis build status"></a> <!-- badges: end --></p>
+
+<p>The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups in the data and can be compared within models in terms of severity assessment.</p>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a>Dependencies</h2>
@@ -177,18 +180,27 @@ cms_cl
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Steven R. Talbot <br><small class="roles"> Maintainer </small>  </li>
+<li>Roelof Maarten van Dijk <br><small class="roles"> Author </small>  </li>
+<li>Steven Talbot <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-9062-4065" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
+<li>Heidrun Potschka <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
 
-      </div>
+      <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.org/r-lib/usethis"><img src="https://travis-ci.org/mytalbot/cms.svg?branch=master" alt="Travis build status"></a></li>
+</ul>
+</div>
+</div>
 
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Steven R. Talbot.</p>
+  <p>Developed by Roelof Maarten van Dijk, Steven Talbot, Heidrun Potschka.</p>
 </div>
 
 <div class="pkgdown">
