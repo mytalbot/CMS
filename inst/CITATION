@@ -20,5 +20,5 @@ citEntry(
     person("Heidrun", "Potschka", role = "aut" )),
   journal  = "PLOS ONE",
   year     = 2020,
-  textversion = "Test"
+  textVersion = "Steven R Talbot. cms 2019."
 )
