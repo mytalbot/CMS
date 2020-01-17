@@ -1,6 +1,11 @@
 ---
   output: github_document
 ---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# cms <img src="https://talbotsr.com/cms/logo.png" align="right" height="139" />
+  
   
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
