@@ -2,3 +2,5 @@
 
 language: r
 cache: packages
+r: bioc-devel
+bioc_packages: BiocCheck
