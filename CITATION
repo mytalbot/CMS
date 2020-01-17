@@ -1,0 +1,24 @@
+citHeader("To cite cms in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "Design of composite measure schemes for comparative severity assessment in animal-based neuroscience research: a case study focussed on rat epilepsy models",
+  author   = c(
+    person("Roelof Maarten", "van Dijk", role = "aut" ),     
+    person("André", "Bleich", role = "ctb" ), 
+    person("René", "Tolba", role = "ctb" ), 
+    person("Ines", "Koska", role = "ctb" ), 
+    person("Isabel", "Seiffert", role = "ctb" ), 
+    person("Christina", "Möller", role = "ctb" ), 
+    person("Valentina", "Di Liberto", role = "ctb" ), 
+    person("André", "Bleich", role = "ctb" ), 
+    person(given = "Steven",
+           family = "Talbot",
+           role = c("aut", "cre"),
+           email = "talbot.steven@mh-hannover.de",
+           comment = c(ORCID = "0000-0002-9062-4065")),
+    person("Heidrun", "Potschka", role = "aut" )),
+  journal  = "PLOS ONE",
+  year     = 2020,
+  textVersion = "Roelof Maarten van Dijk, Andre Bleich, Rene Tolba, Ines Koska, Isabel Seiffert, Christina Moeller, Valentina Di Liberto, Steven R. Talbot and Heidrun Potschka, Design of composite measure schemes for comparative severity assessment in animal-based neuroscience research: a case study focussed on rat epilepsy models, PLOS ONE, 2020."
+)
