@@ -18,7 +18,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-9062-4065")),
     person("Heidrun", "Potschka", role = "aut" ))
 Maintainer: Steven R. Talbot <talbot.steven@mh-hannover.de>
-Description: The packages uses tabular data from rat epilepsy studies and applies a composite measures schemes (via PCA) to select the most prominent 
+Description: The packages uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to identify the most prominent 
    features. Further, variables can be selected to perform cluster analysis on a selected subset of variables (composite score) to assess the cluster
    distribution of severity in various experimental states and animal models.
 License: GPL-3
