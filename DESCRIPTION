@@ -2,7 +2,7 @@ Package: cms
 Title: Composite Measure Schemes for Severity Assessment in Animal Research
 Version: 0.0.9000
 Date: 2020-01-13
-Author: c(
+Authors@R: c(
     person("Roelof Maarten", "van Dijk", role = "aut" ),     
     person("André", "Bleich", role = "ctb" ), 
     person("René", "Tolba", role = "ctb" ), 
