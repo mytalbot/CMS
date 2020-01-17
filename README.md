@@ -8,6 +8,9 @@ Composite measure schemes (cms)
 
 The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups in the data and can be compared within models in terms of severity assessment.
 
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/mytalbot/cms.svg?branch=master)](https://travis-ci.org/r-lib/usethis) <!-- badges: end -->
+
 Dependencies
 ------------
 
@@ -44,6 +47,7 @@ The following example uses the (pre-cleaned) internalized epilepsy data set with
 
 ``` r
 library(cms)
+#> Loading required package: ade4
 cms_cl        <- cms_clusters(episet_full, 
                               runs        = 100, 
                               emptysize   = 0.2, 

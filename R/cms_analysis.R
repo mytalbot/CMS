@@ -9,7 +9,9 @@
 #' @param savepath include the path for the baplot here (no name spec for the plot necessary, it is called "Cluster_distros.png")
 #' 
 #' @import ggplot2
-#'
+#' @import utils
+#' @importFrom stats sd median
+#' 
 #' @return data.frame
 #'
 #' @export
@@ -36,6 +38,7 @@ cms_analysis <- function(raw, thresholds, cluster_distribution, savepath=NA){
   distr_sds   <- aaply(laply(cluster_distribution, as.matrix), c(2, 3), sd)
   
   # calculate percentage for each run 
+  distr_perc  <- NULL
   distr_perc  <- lapply(cluster_distribution, function(x){
     apply(x, 1, function(y){100/sum(y)*y})
   })
@@ -50,12 +53,24 @@ cms_analysis <- function(raw, thresholds, cluster_distribution, savepath=NA){
   distr_means <- melt(distr_means)
   
   #split the grouping name into two columns
-  distr_means <- cbind(distr_means, 
+  DM <- cbind(distr_means, 
                        data.frame(do.call(rbind, strsplit(as.vector(distr_means$X1), split = "_"))))
   
-  
   #re label the column names
-  names(distr_means) <- c("cluster","treat_mod","perc","mod","treat")
+  distr_means$cluster   <- NULL
+  distr_means$treat_mod <- NULL
+  distr_means$perc      <- NULL
+  distr_means$mod       <- NULL
+  distr_means$treat     <- NULL
+  
+  distr_means$cluster   <- DM[,1]
+  distr_means$treat_mod <- DM[,2]
+  distr_means$perc      <- DM[,3]
+  distr_means$mod       <- DM[,4]
+  distr_means$treat     <- DM[,5]
+  
+  #names(distr_means)  <- c("cluster","treat_mod","perc","mod","treat")
+ 
   
   # change the names and order of the different groups (to make them appear in the graph the way we want)
   distr_means$treat       <- factor(distr_means$treat, levels=c("naive","sham","SE"))
@@ -69,6 +84,7 @@ cms_analysis <- function(raw, thresholds, cluster_distribution, savepath=NA){
   
   # create new column to get the group names right 
   # the "SE" group is split in "kindled" for the kindling model and "post-SE" for the other two models 
+  distr_means$n_treat <- NULL
   distr_means$n_treat <- as.character(distr_means$treat)
   distr_means[distr_means [,"mod"] =="Kindling" & distr_means[,"treat"]=="SE","n_treat"] <- "Kindled"
   distr_means[!distr_means[,"mod"] =="Kindling" & distr_means[,"treat"]=="SE","n_treat"] <- "Post-SE"
@@ -80,10 +96,12 @@ cms_analysis <- function(raw, thresholds, cluster_distribution, savepath=NA){
   levels(distr_means$cluster) <- c("cluster1","cluster2","cluster3")
   distr_means$cluster         <- factor(distr_means$cluster, levels=c("cluster3","cluster2","cluster1"))
   
+  print(head(distr_means))
+  
   # create graph of the mean distributions of the 100 runs 
   p <- ggplot(distr_means, aes(x=n_treat, y=perc, fill=cluster)) +
     geom_bar(stat = "identity") +
-    facet_grid(~mod, scale="free") +
+    facet_grid(~mod, scales="free") +
     theme_bw() +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
     scale_fill_brewer(palette="Reds", direction=-1) +

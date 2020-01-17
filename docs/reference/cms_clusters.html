@@ -90,7 +90,12 @@ result in the calculation of a severity-based cluster distribution analysis usin
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/mytalbot/cms">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -104,7 +109,7 @@ result in the calculation of a severity-based cluster distribution analysis usin
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>cms algorithm</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/mytalbot/cms/blob/master/R/cms_clusters.R'><code>R/cms_clusters.R</code></a></small>
     <div class="hidden name"><code>cms_clusters.Rd</code></div>
     </div>
 
@@ -123,12 +128,36 @@ result in the calculation of a severity-based cluster distribution analysis usin
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>path and filename as a string (e.g. C:/testfolder/testdata.txt)</p></td>
+      <th>raw</th>
+      <td><p>raw data (unprocessed or from cms_load)</p></td>
     </tr>
     <tr>
-      <th>remove_this</th>
-      <td><p>specification of columheaders that shall be removed from the data</p></td>
+      <th>runs</th>
+      <td><p>number of random samplings for the PCA-based feature determination</p></td>
+    </tr>
+    <tr>
+      <th>emptysize</th>
+      <td><p>fraction of empty data that will be removed</p></td>
+    </tr>
+    <tr>
+      <th>trainsize</th>
+      <td><p>size of the "training data" in the fold subsamplings</p></td>
+    </tr>
+    <tr>
+      <th>idvariable</th>
+      <td><p>column header of the animal id variable in the data</p></td>
+    </tr>
+    <tr>
+      <th>varstart</th>
+      <td><p>column number with the first variable to start with - there shall be no general infomation on the right side of this number</p></td>
+    </tr>
+    <tr>
+      <th>exclude</th>
+      <td><p>naming column headers that shall be excluded from the data set</p></td>
+    </tr>
+    <tr>
+      <th>scorevars</th>
+      <td><p>if NA (default) the function will determine the most prominent variables in the sample data; NA can also be replaced by a vector of variables</p></td>
     </tr>
     </table>
 

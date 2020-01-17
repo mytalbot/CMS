@@ -52,7 +52,14 @@
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/mytalbot/cms">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -122,6 +129,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <a href="#example" class="anchor"></a>Example</h2>
 <p>The following example uses the (pre-cleaned) internalized epilepsy data set with three experimental subgroups. Further, the feature selection is repeated 100-fold. The variable <code>scorevars=NA</code> ensures that the most prominent features in the subgroups are determined. For cluster distribution analysis specific variables must be selected in <code>scorevars</code> (see Vignette).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cms)
+<span class="co">#&gt; Lade nötiges Paket: ade4</span>
 cms_cl        &lt;-<span class="st"> </span><span class="kw"><a href="reference/cms_clusters.html">cms_clusters</a></span>(episet_full, 
                               <span class="dt">runs        =</span> <span class="dv">100</span>, 
                               <span class="dt">emptysize   =</span> <span class="fl">0.2</span>, 
@@ -145,7 +153,16 @@ cms_cl
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/mytalbot/cms">https://​github.com/​mytalbot/​cms</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/mytalbot/cms/issues">https://​github.com/​mytalbot/​cms/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>

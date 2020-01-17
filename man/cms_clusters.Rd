@@ -9,9 +9,21 @@ cms_clusters(raw = raw, runs = 100, emptysize = 0.2,
   exclude = "Seizures_n", scorevars = NA)
 }
 \arguments{
-\item{file}{path and filename as a string (e.g. C:/testfolder/testdata.txt)}
+\item{raw}{raw data (unprocessed or from cms_load)}
 
-\item{remove_this}{specification of columheaders that shall be removed from the data}
+\item{runs}{number of random samplings for the PCA-based feature determination}
+
+\item{emptysize}{fraction of empty data that will be removed}
+
+\item{trainsize}{size of the "training data" in the fold subsamplings}
+
+\item{idvariable}{column header of the animal id variable in the data}
+
+\item{varstart}{column number with the first variable to start with - there shall be no general infomation on the right side of this number}
+
+\item{exclude}{naming column headers that shall be excluded from the data set}
+
+\item{scorevars}{if NA (default) the function will determine the most prominent variables in the sample data; NA can also be replaced by a vector of variables}
 }
 \description{
 The algorithm takes the cleaned input data, does some curation for missing values and then calculates the composite measures schemes.

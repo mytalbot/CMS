@@ -5,11 +5,17 @@
 #' the so found feature sets can be specified, e.g., scorevars=c("Sacc_pref", "social_interaction", "burrowing_rat", "openfield_rat"). This will
 #' result in the calculation of a severity-based cluster distribution analysis using the input variables.
 #'
-#' @param file path and filename as a string (e.g. C:/testfolder/testdata.txt)
-#' @param remove_this specification of columheaders that shall be removed from the data 
+#' @param raw raw data (unprocessed or from cms_load)
+#' @param runs number of random samplings for the PCA-based feature determination
+#' @param emptysize fraction of empty data that will be removed
+#' @param trainsize size of the "training data" in the fold subsamplings
+#' @param idvariable column header of the animal id variable in the data
+#' @param varstart column number with the first variable to start with - there shall be no general infomation on the right side of this number
+#' @param exclude naming column headers that shall be excluded from the data set
+#' @param scorevars if NA (default) the function will determine the most prominent variables in the sample data; NA can also be replaced by a vector of variables
 #' 
-#' @import ade4
-#' @import made4 
+#' @import made4  
+#' @import ade4 
 #' @import RColorBrewer 
 #' @import gplots
 #' @import scatterplot3d
@@ -18,16 +24,14 @@
 #' @import reshape2
 #' @import plyr
 #' @import corrplot
-#' 
+#' @importFrom stats kmeans predict   
 #'
 #' @export
 #'
 #'
 cms_clusters  <- function(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", varstart=14, exclude="Seizures_n",
                           scorevars=NA){
-  
-  library("ade4")
-  
+
   # prepare the framework
   PC1loadings <- data.frame(matrix(nrow = 100, ncol = 10))
   PC2loadings <- data.frame(matrix(nrow = 100, ncol = 10))
@@ -63,7 +67,7 @@ cms_clusters  <- function(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idva
     
     # do the PCA
     d_pca_ord <- ord((d_pca), type="pca")
-
+    #print(head(d_pca))
     
     ### extract the LOADINGs and sort them
     temp            <- sqrt((d_pca_ord$ord$co[,1:2])^2)
