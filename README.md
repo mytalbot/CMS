@@ -6,10 +6,10 @@ cms <img src="https://talbotsr.com/cms/logo.png" align="right" height="139" />
 Composite measure schemes (cms)
 ===============================
 
-The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups in the data and can be compared within models in terms of severity assessment.
-
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/mytalbot/cms.svg?branch=master)](https://travis-ci.org/r-lib/usethis) <!-- badges: end -->
+
+The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups in the data and can be compared within models in terms of severity assessment.
 
 Dependencies
 ------------

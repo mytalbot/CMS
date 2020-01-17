@@ -4,8 +4,6 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cms <img src="https://talbotsr.com/cms/logo.png" align="right" height="139" />
-  
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -15,6 +13,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+# cms <img src="https://talbotsr.com/cms/logo.png" align="right" height="139" />
+  
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/mytalbot/cms.svg?branch=master)](https://travis-ci.org/r-lib/usethis)
 <!-- badges: end -->
