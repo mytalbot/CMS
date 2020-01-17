@@ -4,6 +4,8 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# cms <img src="https://talbotsr.com/cms/logo.png" align="right" height="139" />
+  
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -12,15 +14,12 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
+# Composite measure schemes (cms)
 
-# cms <img src="https://talbotsr.com/cms/logo.png" align="right" height="139" />
-  
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/mytalbot/cms.svg?branch=master)](https://travis-ci.org/r-lib/usethis)
 <!-- badges: end -->
 
-
-# Composite measure schemes (cms)
 The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups in the data and can be compared within models in terms of severity assessment.
 
 
