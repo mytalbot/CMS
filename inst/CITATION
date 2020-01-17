@@ -19,5 +19,6 @@ citEntry(
            comment = c(ORCID = "0000-0002-9062-4065")),
     person("Heidrun", "Potschka", role = "aut" )),
   journal  = "PLOS ONE",
-  year     = 2020 
+  year     = 2020,
+  textversion = "Test"
 )
