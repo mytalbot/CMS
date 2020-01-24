@@ -1,6 +1,6 @@
 ---
 title: "cms Vignette"
-author: "Steven R. Talbot & Ines Koska"
+author: "Steven R. Talbot, Ines Koska, Heidrun Potschka"
 output: rmarkdown::html_vignette
 bibliography: references.bib
 vignette: >
@@ -141,7 +141,7 @@ training data) and calculates general attributes as well as graphical distributi
 cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
 
 ```
-# Example Analysis 
+# Example Analyses 
 
 ### Example 1: Identification of the most prominent (stable) features in the provided data set `episet_full`.
 
