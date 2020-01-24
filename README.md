@@ -9,12 +9,12 @@ Composite measure schemes (cms)
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/mytalbot/cms.svg?branch=master)](https://travis-ci.org/r-lib/usethis) <!-- badges: end -->
 
-The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups in the data and can be compared within models in terms of severity assessment.
+The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups and allows severity assessment between animal models.
 
 Dependencies
 ------------
 
-The cms package has some other package dependencies. We advise installing/updating the following packages before using cms:
+The cms package has some dependencies. We advise installing/updating the following packages before using cms:
 
 -   ade4
 -   scatterplot3d
@@ -43,7 +43,7 @@ library(cms)
 Example
 -------
 
-The following example uses the (pre-cleaned) internalized epilepsy data set with three experimental subgroups. Further, the feature selection is repeated 100-fold. The variable `scorevars=NA` ensures that the most prominent features in the subgroups are determined. For cluster distribution analysis specific variables must be selected in `scorevars` (see Vignette).
+The following example uses the (pre-cleaned) internalized epilepsy data (episet\_full) set with three experimental subgroups. Further, the feature selection is repeated 100-fold. The variable `scorevars=NA` ensures that the most prominent features in the subgroups are determined. For cluster distribution analysis specific variables must be selected in `scorevars` (see Vignette).
 
 ``` r
 library(cms)

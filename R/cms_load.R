@@ -1,13 +1,13 @@
-#' Loads Data 
+#' Loads data in the cms format into R
 #'
-#' Data from a *.txt file will be read into the function so that it can be fed to the algorithm.
+#' Data from a *.txt file will be read into the function so that it can be fed to the algorithm. For the tabular structure see the Vignette.
 #'
 #' @param file path and filename as a string (e.g. C:/testfolder/testdata.txt)
 #' @param remove_this specification of columheaders that shall be removed from the data 
 #' 
 #' @importFrom utils read.table
 #'
-#' @return data.frame
+#' @return Data frame with the experimental raw data.
 #'
 #' @export
 #'

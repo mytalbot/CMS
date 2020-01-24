@@ -1,4 +1,4 @@
-#' cms algorithm 
+#' Cluster and frequency distribution of composite measures for severity attribution
 #'
 #' The algorithm takes the cleaned input data, does some curation for missing values and then calculates the composite measures schemes.
 #' The function can be used in two ways: 1. with the scorevars set to NA the data are screened for the most prominent feature contributions; 2. 
@@ -26,6 +26,8 @@
 #' @import corrplot
 #' @importFrom stats kmeans predict   
 #'
+#' @return A list with composite score thresholds and k-means cluster attributions.
+#' 
 #' @export
 #'
 #'

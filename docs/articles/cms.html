@@ -73,6 +73,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>cms Vignette</h1>
+                        <h4 class="author">Steven R. Talbot &amp; Ines Koska</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/mytalbot/cms/blob/master/vignettes/cms.Rmd"><code>vignettes/cms.Rmd</code></a></small>
@@ -82,13 +83,251 @@
 
     
     
+<div id="about-cms-package" class="section level2">
+<h2 class="hasAnchor">
+<a href="#about-cms-package" class="anchor"></a>About cms package</h2>
+<p>In our paper <strong>“Design of composite measure schemes for comparative severity assessment in animal-based neuroscience research: a case study focussed on rat epilepsy models”</strong> we introduce composite measures schemes (cms) to assess severity in rat epilepsy models. We suggest a PCA-based algorithm to assess a plethora of outcome variables for their suitability as features in a simple composite score for comparative severity assessment.</p>
+<p>This vignette covers the basic functions for cms analysis in R <span class="citation">(R Core Team 2019)</span>.</p>
+</div>
+<div id="package-requirements" class="section level1">
+<h1 class="hasAnchor">
+<a href="#package-requirements" class="anchor"></a>Package Requirements</h1>
+<p>In order to use the cms package some dependencies need to be installed. The ade4 and made4 packages are an essential requirement for the cms algorithm. However, they are available from Bioconductor. They can be installed as such:</p>
+<p><a href="https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html">BiocManager</a></p>
+<pre><code>if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("made4")</code></pre>
+<p>The remaining dependencies can be loaded via CRAN: ade4 <span class="citation">(Dray and Dufour 2007, <span class="citation">Bougeard and Dray (2018)</span>, <span class="citation">Chessel, Dufour, and Thioulouse (2004)</span>, <span class="citation">Dray, Dufour, and Chessel (2007)</span>)</span>, scatterplot3d <span class="citation">(Ligges and Mächler 2003)</span>, lattice <span class="citation">(Sarkar 2008)</span>, corrplot <span class="citation">(Wei and Simko 2017)</span>, caret <span class="citation">(Jed Wing et al. 2019)</span>, ggplot2 <span class="citation">(Wickham 2016)</span>, reshape2 <span class="citation">(Wickham 2007)</span>, plyr <span class="citation">(Wickham 2011)</span>, RColorBrewer <span class="citation">(Neuwirth 2014)</span>, gplots <span class="citation">(Warnes et al. 2019)</span>, e1071 <span class="citation">(Meyer et al. 2019)</span>. The following links can be used directly in the R console.</p>
+<pre><code>install.packages("ade4") 
+install.packages("scatterplot3d")
+install.packages("lattice")
+install.packages("corrplot")
+install.packages("caret")
+install.packages("ggplot2")
+install.packages("reshape2")
+install.packages("plyr")
+install.packages("RColorBrewer")
+install.packages("gplots")
+install.packages("e1071")</code></pre>
+<p>Please note that the cms package requires graphical components which are not fully used in the current version of the development version (v. 0.0.9000).</p>
+<p>See the <a href="#references">reference section</a> for more information on the included packages.</p>
+</div>
+<div id="code-and-information" class="section level1">
+<h1 class="hasAnchor">
+<a href="#code-and-information" class="anchor"></a>Code and information</h1>
+<p>For more information on the cms package and the source code see:</p>
+<ul>
+<li>cms <a href="https://talbotsr.com/cms/index.html">website</a> and<br>
+</li>
+<li>the cms <a href="https://github.com/mytalbot/cms">GitHub repository</a>
+</li>
+</ul>
+</div>
+<div id="introduction" class="section level1">
+<h1 class="hasAnchor">
+<a href="#introduction" class="anchor"></a>Introduction</h1>
+</div>
+<div id="data-structure" class="section level1">
+<h1 class="hasAnchor">
+<a href="#data-structure" class="anchor"></a>Data structure</h1>
+<p>The cms algorithm requires the input data in specific long format. The table can be combined with meta information. The user has to specify a column from which on only measurement data are included. Before that column all entries can have informative character.</p>
+<p>Meta-information (=column headers) in the included data set are:</p>
+<ul>
+<li>
+<strong>shortname</strong> a short term study identifier (e.g., kindling)</li>
+<li>
+<strong>for2591_id</strong> someinternal identifier<br>
+</li>
+<li>
+<strong>species</strong> analysed species</li>
+<li>
+<strong>sex</strong> analysed sex</li>
+<li>
+<strong>strain</strong> animal strain id</li>
+<li>
+<strong>animal_id</strong> animal identifier (mandatory!)</li>
+<li>
+<strong>treatment</strong> experimental treatment (mandatory!)</li>
+<li>
+<strong>subproject</strong> subproject (mandatory if there are subprojects!)</li>
+<li>
+<strong>groups</strong> subgroups (mandatory if there are additional subgroups in the data)</li>
+<li>
+<strong>mod</strong> model string (e.g., chem, elec, kind)</li>
+<li>
+<strong>repeats</strong> experimental repeats (mandatory!); if only one repeat set this column to 3</li>
+</ul>
+<p>Please note that most of the presented meta-data are optional. However, you may use any of the included criteria to filter the data for subsets.</p>
+<p>Measurement data in the provided example start at column No. 14. The following 57 variables are included. Note that the raw data include a lot of missing values (NA). These will be curated in the algorithm.</p>
+<p>Bwc, rgs, tint_mouse, nesting_rat, burrowing_rat, openfield_rat, cort_plasma, cort_fec, cort_fur_hair, food, social_interaction, Sacc_pref, OF_rearing_frequency, Of_immobile_duration, OF_center_time, BWB_WB, BWB_entries_in_BB, BWB_streching, BWB_LT, EPM_stretching, EPM_head_dip, EPM_closed_arms_duration, EPM_open_arms_duration, EPM_open1_3, Adrenal_glands, Creatincinase, Oxytocin, BDNF, Irwin, Seizures_n, Seizures_duration, Act_d, Act_n, HR_d, HR_n, NN.I_d, NN.I_n, NNx_d, NNx_n, pNNx_d, pNNx_n, RMSSD_d, RMSSD_n, SDNN_d, SDNN_n, MPPF_hippocampus_L, MPPF_hippocampus_R, MPPF_mPFC, MPPF_septum, FDG_mPFC, FDG_septum, FDG_amygdala, FDG_striatum, FDG_hypothalamus, FDG_thalamus, FDG_parietal_cortex, FDG_hippocampus</p>
+<p>The full data set is included in the cms package and can be accessed with:</p>
+<pre><code>library(cms)
+head(episet_full) </code></pre>
+</div>
+<div id="using-the-functions-of-the-cms-package" class="section level1">
+<h1 class="hasAnchor">
+<a href="#using-the-functions-of-the-cms-package" class="anchor"></a>Using the functions of the cms package</h1>
+<p>The following section explains the functions of this package and how to use them.</p>
+<div id="cms_load" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cms_load" class="anchor"></a>cms_load</h2>
+<p>Data from a *.txt <code>file</code> will be read into R using the <code>cms_load</code> function so that it can be fed to the algorithm. The data should comprise of meta-information for sub-sampling and a general experimental overview. After the meta-section the variables should follow. The user has to specify the column number later that points to the first variable after the meta-section. The cms_load function requires a “repeats” column that is set to 3. If you do not have repeats, just add a column and fill its contents with 3. Sorry, we will address this little imperfection in a later step… The <code>remove_this</code> object can be used to remove specific columns from the data table (e.g., <code>remove_this=c("Init.SD", "total.SD", "Mean.SD")</code>). This is good for additional cleaning of the data set.</p>
+<pre><code># This function loads tabular text data into R.
+
+cms_load(file, remove_this=NA)
+</code></pre>
+</div>
+<div id="cms_clusters" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cms_clusters" class="anchor"></a>cms_clusters</h2>
+<p>The algorithm takes the cleaned input data (<code>raw</code>), does some curation for missing values (<code>emptysize=0.2</code>, e.g., for eliminating data with more than 20 percent missing entries) and then calculates the composite score. The feature selection is done be re-sampling random sets of the data and monitoring the outcome of the respective PCA analysis. The fractional size of the sampling set is called <code>trainsize</code>. The number of sampling repeats is coded in <code>runs</code>. The algorithm requires individual animal ids. The column header can be coded differently. Here, it is called <code>idvariable="animal_id"</code>. The first variable for the analysis after the meta-information starts at colum 14 and is coded in <code>varstart</code>. Again, there is an option to selectively exclude columns from the analysis (<code>exclude</code>).</p>
+<p>Additionally, the function can be used in two ways:</p>
+<ol style="list-style-type: decimal">
+<li>with the object <code>scorevars</code> set to NA the data are screened for the most prominent feature contributions</li>
+<li>the so found feature sets can be specified, e.g., <code>scorevars=c("Sacc_pref", "social_interaction", "burrowing_rat", "openfield_rat")</code>. This will result in the calculation of a severity-based cluster distribution analysis using the input variables.</li>
+</ol>
+<pre><code># This function calculates the cluster and frequency distribution of composite measures for severity attribution. 
+
+cms_clusters(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", 
+varstart=14, exclude="Seizures_n", scorevars=NA)
+</code></pre>
+</div>
+<div id="cms_analysis" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cms_analysis" class="anchor"></a>cms_analysis</h2>
+<p>The function takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsampling of the training data) and calculates general attributes as well as graphical distribution outputs. Again, the <code>raw</code> data are required as inputs. The <code>thresholds</code> variable is the first output from the <code>cms_clusters</code> function and is itself a list. The object <code>cluster_distribution</code> is the second output of the <code>cms_clusters</code> list and includes the frequency distributions of the most prominent features. If <code>savepath=NA</code>, no plot will be saved. Otherwise, if a path is given a cluster distribution plot for severity analysis of the subgroups will be stored at the location.</p>
+<pre><code># This function analyses the output of the specific cms_cluster function.
+
+cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
+</code></pre>
+</div>
+</div>
+<div id="example-analysis" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-analysis" class="anchor"></a>Example Analysis</h1>
+<div id="example-1-identification-of-the-most-prominent-stable-features-in-the-provided-data-set-episet_full-" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-1-identification-of-the-most-prominent-stable-features-in-the-provided-data-set-episet_full-" class="anchor"></a>Example 1: Identification of the most prominent (stable) features in the provided data set <code>episet_full</code>.</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cms)
-<span class="co">#&gt; Lade nötiges Paket: ade4</span></code></pre></div>
-<p>I’m a Test.</p>
+<span class="co">#&gt; Lade nötiges Paket: ade4</span>
+ 
+cms_cl        &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cms_clusters.html">cms_clusters</a></span>(episet_full, 
+                              <span class="dt">runs        =</span> <span class="dv">100</span>, 
+                              <span class="dt">emptysize   =</span> <span class="fl">0.2</span>, 
+                              <span class="dt">trainsize   =</span> <span class="fl">0.8</span>, 
+                              <span class="dt">idvariable  =</span> <span class="st">"animal_id"</span>, 
+                              <span class="dt">varstart    =</span> <span class="dv">14</span>, 
+                              <span class="dt">exclude     =</span> <span class="st">"Seizures_n"</span>,
+                              <span class="dt">scorevars   =</span>  <span class="ot">NA</span>) 
+cms_cl
+<span class="co">#&gt;                      x freq  perc</span>
+<span class="co">#&gt; 1        burrowing_rat  100 25.00</span>
+<span class="co">#&gt; 8   social_interaction  100 25.00</span>
+<span class="co">#&gt; 6        openfield_rat   95 23.75</span>
+<span class="co">#&gt; 7            Sacc_pref   54 13.50</span>
+<span class="co">#&gt; 4 Of_immobile_duration   36  9.00</span>
+<span class="co">#&gt; 5 OF_rearing_frequency    6  1.50</span>
+<span class="co">#&gt; 3        BWB_streching    5  1.25</span>
+<span class="co">#&gt; 2               BWB_LT    4  1.00</span></code></pre></div>
+</div>
+<div id="example-2-specific-feature-analysis-for-severity-comparisons-" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-2-specific-feature-analysis-for-severity-comparisons-" class="anchor"></a>Example 2: Specific feature analysis for severity comparisons.</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cms)
+ 
+cms_cl        &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cms_clusters.html">cms_clusters</a></span>(episet_full, 
+                              <span class="dt">runs        =</span> <span class="dv">100</span>, 
+                              <span class="dt">emptysize   =</span> <span class="fl">0.2</span>, 
+                              <span class="dt">trainsize   =</span> <span class="fl">0.8</span>, 
+                              <span class="dt">idvariable  =</span> <span class="st">"animal_id"</span>, 
+                              <span class="dt">varstart    =</span> <span class="dv">14</span>, 
+                              <span class="dt">exclude     =</span> <span class="st">"Seizures_n"</span>,
+                              <span class="dt">scorevars   =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Sacc_pref"</span>, <span class="st">"social_interaction"</span>, <span class="st">"burrowing_rat"</span>, <span class="st">"openfield_rat"</span>)) 
+
+thresholds           &lt;-<span class="st"> </span>cms_cl[[<span class="dv">1</span>]] 
+cluster_distribution &lt;-<span class="st"> </span>cms_cl[[<span class="dv">2</span>]]  
+
+result               &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cms_analysis.html">cms_analysis</a></span>(episet_full, thresholds, cluster_distribution)
+result[[<span class="dv">2</span>]]</code></pre></div>
+<p><img src="cms_files/figure-html/setup%202-1.png" width="576"></p>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
+<div id="refs" class="references">
+<div id="ref-ade4_2">
+<p>Bougeard, Stéphanie, and Stéphane Dray. 2018. “Supervised Multiblock Analysis in R with the ade4 Package.” <em>Journal of Statistical Software</em> 86 (1): 1–17. doi:<a href="https://doi.org/10.18637/jss.v086.i01">10.18637/jss.v086.i01</a>.</p>
+</div>
+<div id="ref-ade4_3">
+<p>Chessel, Daniel, Anne-Béatrice Dufour, and Jean Thioulouse. 2004. “The ade4 Package – I: One-Table Methods.” <em>R News</em> 4 (1): 5–10. <a href="https://cran.r-project.org/doc/Rnews/" class="uri">https://cran.r-project.org/doc/Rnews/</a>.</p>
+</div>
+<div id="ref-ade4_1">
+<p>Dray, Stéphane, and Anne–Béatrice Dufour. 2007. “The ade4 Package: Implementing the Duality Diagram for Ecologists.” <em>Journal of Statistical Software</em> 22 (4): 1–20. doi:<a href="https://doi.org/10.18637/jss.v022.i04">10.18637/jss.v022.i04</a>.</p>
+</div>
+<div id="ref-ade4_4">
+<p>Dray, Stéphane, Anne-Béatrice Dufour, and Daniel Chessel. 2007. “The ade4 Package – II: Two-Table and K-Table Methods.” <em>R News</em> 7 (2): 47–52. <a href="https://cran.r-project.org/doc/Rnews/" class="uri">https://cran.r-project.org/doc/Rnews/</a>.</p>
+</div>
+<div id="ref-caret">
+<p>Jed Wing, Max Kuhn. Contributions from, Steve Weston, Andre Williams, Chris Keefer, Allan Engelhardt, Tony Cooper, Zachary Mayer, et al. 2019. <em>Caret: Classification and Regression Training</em>. <a href="https://CRAN.R-project.org/package=caret" class="uri">https://CRAN.R-project.org/package=caret</a>.</p>
+</div>
+<div id="ref-sp3d">
+<p>Ligges, Uwe, and Martin Mächler. 2003. “Scatterplot3d - an R Package for Visualizing Multivariate Data.” <em>Journal of Statistical Software</em> 8 (11): 1–20. <a href="http://www.jstatsoft.org" class="uri">http://www.jstatsoft.org</a>.</p>
+</div>
+<div id="ref-e1071">
+<p>Meyer, David, Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel, and Friedrich Leisch. 2019. <em>E1071: Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), Tu Wien</em>. <a href="https://CRAN.R-project.org/package=e1071" class="uri">https://CRAN.R-project.org/package=e1071</a>.</p>
+</div>
+<div id="ref-colbrew">
+<p>Neuwirth, Erich. 2014. <em>RColorBrewer: ColorBrewer Palettes</em>. <a href="https://CRAN.R-project.org/package=RColorBrewer" class="uri">https://CRAN.R-project.org/package=RColorBrewer</a>.</p>
+</div>
+<div id="ref-RCoreTeam">
+<p>R Core Team. 2019. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-lattice">
+<p>Sarkar, Deepayan. 2008. <em>Lattice: Multivariate Data Visualization with R</em>. New York: Springer. <a href="http://lmdvr.r-forge.r-project.org" class="uri">http://lmdvr.r-forge.r-project.org</a>.</p>
+</div>
+<div id="ref-gplot">
+<p>Warnes, Gregory R., Ben Bolker, Lodewijk Bonebakker, Robert Gentleman, Wolfgang Huber Andy Liaw, Thomas Lumley, Martin Maechler, et al. 2019. <em>Gplots: Various R Programming Tools for Plotting Data</em>. <a href="https://CRAN.R-project.org/package=gplots" class="uri">https://CRAN.R-project.org/package=gplots</a>.</p>
+</div>
+<div id="ref-corrplot2017">
+<p>Wei, Taiyun, and Viliam Simko. 2017. <em>R Package “Corrplot”: Visualization of a Correlation Matrix</em>. <a href="https://github.com/taiyun/corrplot" class="uri">https://github.com/taiyun/corrplot</a>.</p>
+</div>
+<div id="ref-reshape2">
+<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/" class="uri">http://www.jstatsoft.org/v21/i12/</a>.</p>
+</div>
+<div id="ref-plyr">
+<p>———. 2011. “The Split-Apply-Combine Strategy for Data Analysis.” <em>Journal of Statistical Software</em> 40 (1): 1–29. <a href="http://www.jstatsoft.org/v40/i01/" class="uri">http://www.jstatsoft.org/v40/i01/</a>.</p>
+</div>
+<div id="ref-ggplot2">
+<p>———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
 
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#about-cms-package">About cms package</a></li>
+      <li><a href="#package-requirements">Package Requirements</a></li>
+      <li><a href="#code-and-information">Code and information</a></li>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#data-structure">Data structure</a></li>
+      <li>
+<a href="#using-the-functions-of-the-cms-package">Using the functions of the cms package</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#cms_load">cms_load</a></li>
+      <li><a href="#cms_clusters">cms_clusters</a></li>
+      <li><a href="#cms_analysis">cms_analysis</a></li>
+      </ul>
+</li>
+      <li><a href="#example-analysis">Example Analysis</a></li>
+      <li><a href="#references">References</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

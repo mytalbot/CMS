@@ -2,7 +2,7 @@
 % Please edit documentation in R/cms_analysis.R
 \name{cms_analysis}
 \alias{cms_analysis}
-\title{cms analysis}
+\title{Composite measurement analysis function}
 \usage{
 cms_analysis(raw, thresholds, cluster_distribution, savepath = NA)
 }
@@ -16,9 +16,9 @@ cms_analysis(raw, thresholds, cluster_distribution, savepath = NA)
 \item{savepath}{include the path for the baplot here (no name spec for the plot necessary, it is called "Cluster_distros.png")}
 }
 \value{
-data.frame
+Data frame with the cluster distributions/severity attributions.+
 }
 \description{
-Takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsample of the training data) and calculates
+The function takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsampling of the training data) and calculates
 general attributes as well as graphical distribution outputs.
 }

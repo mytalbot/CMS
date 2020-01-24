@@ -2,7 +2,7 @@
 % Please edit documentation in R/cms_clusters.R
 \name{cms_clusters}
 \alias{cms_clusters}
-\title{cms algorithm}
+\title{Cluster and frequency distribution of composite measures for severity attribution}
 \usage{
 cms_clusters(raw = raw, runs = 100, emptysize = 0.2,
   trainsize = 0.8, idvariable = "animal_id", varstart = 14,
@@ -24,6 +24,9 @@ cms_clusters(raw = raw, runs = 100, emptysize = 0.2,
 \item{exclude}{naming column headers that shall be excluded from the data set}
 
 \item{scorevars}{if NA (default) the function will determine the most prominent variables in the sample data; NA can also be replaced by a vector of variables}
+}
+\value{
+A list with composite score thresholds and k-means cluster attributions.
 }
 \description{
 The algorithm takes the cleaned input data, does some curation for missing values and then calculates the composite measures schemes.

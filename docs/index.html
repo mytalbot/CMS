@@ -88,12 +88,13 @@
 <a href="#composite-measure-schemes-cms" class="anchor"></a>Composite measure schemes (cms)</h1>
 <!-- badges: start -->
 
-<p>The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups in the data and can be compared within models in terms of severity assessment.</p>
+<p>The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups and allows severity assessment between animal models.</p>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a>Dependencies</h2>
-<p>The cms package has some other package dependencies. We advise installing/updating the following packages before using cms:</p>
+<p>The cms package has some dependencies. We advise installing/updating the following packages before using cms:</p>
 <ul>
+<li>made4 (Bioconductor)</li>
 <li>ade4<br>
 </li>
 <li>scatterplot3d<br>
@@ -101,8 +102,6 @@
 <li>lattice<br>
 </li>
 <li>corrplot<br>
-</li>
-<li>made4<br>
 </li>
 <li>caret<br>
 </li>
@@ -116,7 +115,7 @@
 </li>
 <li>gplots<br>
 </li>
-<li>e1072</li>
+<li>e1071</li>
 </ul>
 </div>
 <div id="installation" class="section level2">
@@ -130,7 +129,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>The following example uses the (pre-cleaned) internalized epilepsy data set with three experimental subgroups. Further, the feature selection is repeated 100-fold. The variable <code>scorevars=NA</code> ensures that the most prominent features in the subgroups are determined. For cluster distribution analysis specific variables must be selected in <code>scorevars</code> (see Vignette).</p>
+<p>The following example uses the (pre-cleaned) internalized epilepsy data (episet_full) set with three experimental subgroups. Further, the feature selection is repeated 100-fold. The variable <code>scorevars=NA</code> ensures that the most prominent features in the subgroups are determined. For cluster distribution analysis specific variables must be selected in <code>scorevars</code> (see Vignette).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cms)
 <span class="co">#&gt; Lade nötiges Paket: ade4</span>
 cms_cl        &lt;-<span class="st"> </span><span class="kw"><a href="reference/cms_clusters.html">cms_clusters</a></span>(episet_full, 

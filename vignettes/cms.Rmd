@@ -1,6 +1,8 @@
 ---
 title: "cms Vignette"
+author: "Steven R. Talbot & Ines Koska"
 output: rmarkdown::html_vignette
+bibliography: references.bib
 vignette: >
   %\VignetteIndexEntry{cms Vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -10,11 +12,181 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width=6
 )
 ```
 
+## About cms package
+In our paper **"Design of composite measure schemes for comparative severity assessment in animal-based neuroscience research: a case study focussed on rat epilepsy models"** we introduce composite measures schemes (cms) to assess severity in rat epilepsy models. We suggest a PCA-based algorithm to assess a plethora of outcome variables for their suitability as features in a simple composite score for comparative severity assessment.
+
+This vignette covers the basic functions for cms analysis in R [@RCoreTeam].
+
+# Package Requirements
+In order to use the cms package some dependencies need to be installed. The ade4 and made4 packages are an essential requirement for the cms 
+algorithm. However, they are available from Bioconductor. They can be installed as such:
+
+[BiocManager](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html)
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("made4")
+```
+The remaining dependencies can be loaded via CRAN: ade4 [@ade4_1, @ade4_2, @ade4_3, @ade4_4], scatterplot3d [@sp3d], 
+lattice [@lattice], corrplot [@corrplot2017], caret [@caret], ggplot2 [@ggplot2], reshape2 [@reshape2], plyr [@plyr],
+RColorBrewer [@colbrew], gplots [@gplot], e1071 [@e1071]. The following links can be used directly in the R console.
+
+```
+install.packages("ade4") 
+install.packages("scatterplot3d")
+install.packages("lattice")
+install.packages("corrplot")
+install.packages("caret")
+install.packages("ggplot2")
+install.packages("reshape2")
+install.packages("plyr")
+install.packages("RColorBrewer")
+install.packages("gplots")
+install.packages("e1071")
+```
+Please note that the cms package requires graphical components which are not fully used in the current version of the development version (v. 0.0.9000). 
+
+See the [reference section](#references) for more information on the included packages. 
+
+# Code and information
+For more information on the cms package and the source code see:  
+
+* cms [website](https://talbotsr.com/cms/index.html) and  
+* the cms [GitHub repository](https://github.com/mytalbot/cms)  
+
+# Introduction 
+
+# Data structure
+The cms algorithm requires the input data in specific long format. The table can be combined with meta information. The user has to specify a column from which on only measurement data are included. Before that column all entries can have informative character.
+
+Meta-information (=column headers) in the included data set are:  
+
+* **shortname**   a short term study identifier (e.g., kindling)
+* **for2591_id**  someinternal identifier  
+* **species**     analysed species
+* **sex**         analysed sex
+* **strain**      animal strain id
+* **animal_id**   animal identifier (mandatory!)
+* **treatment**   experimental treatment (mandatory!)
+* **subproject**  subproject (mandatory if there are subprojects!)
+* **groups**      subgroups (mandatory if there are additional subgroups in the data)
+* **mod**         model string (e.g., chem, elec, kind)
+* **repeats**     experimental repeats (mandatory!); if only one repeat set this column to 3
+
+Please note that most of the presented meta-data are optional. However, you may use any of the included criteria to filter the data
+for subsets.
+
+Measurement data in the provided example start at column No. 14. The following 57 variables are included. Note that the raw data include a lot of missing values (NA). These will be curated in the algorithm.
+
+Bwc, rgs, tint_mouse, nesting_rat, burrowing_rat,  openfield_rat, cort_plasma, cort_fec, cort_fur_hair, food, social_interaction,
+Sacc_pref, OF_rearing_frequency, Of_immobile_duration,  OF_center_time, BWB_WB, BWB_entries_in_BB, BWB_streching, BWB_LT, EPM_stretching,
+EPM_head_dip, EPM_closed_arms_duration, EPM_open_arms_duration, EPM_open1_3, Adrenal_glands, Creatincinase, Oxytocin, BDNF, Irwin,
+Seizures_n, Seizures_duration, Act_d, Act_n, HR_d, HR_n, NN.I_d, NN.I_n, NNx_d, NNx_n, pNNx_d, pNNx_n, RMSSD_d, RMSSD_n, SDNN_d, SDNN_n,
+MPPF_hippocampus_L, MPPF_hippocampus_R, MPPF_mPFC, MPPF_septum, FDG_mPFC, FDG_septum, FDG_amygdala, FDG_striatum, FDG_hypothalamus,
+FDG_thalamus, FDG_parietal_cortex, FDG_hippocampus 
+
+The full data set is included in the cms package and can be accessed with:
+
+```
+library(cms)
+head(episet_full) 
+```
+
+# Using the functions of the cms package
+The following section explains the functions of this package and how to use them.
+
+## cms_load
+Data from a *.txt `file` will be read into R using the `cms_load` function so that it can be fed to the algorithm. The data should comprise of meta-information for sub-sampling and a general experimental overview. After the meta-section the variables should follow. The user has to specify the column number later that points to the first variable after the meta-section. The cms_load function requires a "repeats" column that is set to 3. If you do not have repeats, just add a column and fill its contents with 3. Sorry, we will address this little imperfection in a later step...
+The `remove_this` object can be used to remove specific columns from the data table (e.g., `remove_this=c("Init.SD", "total.SD", "Mean.SD")`). This is good for additional cleaning of the data set.
+
+```
+# This function loads tabular text data into R.
+
+cms_load(file, remove_this=NA)
+
+```
+
+## cms_clusters
+The algorithm takes the cleaned input data (`raw`), does some curation for missing values (`emptysize=0.2`, e.g., for eliminating data with more than 20 percent missing entries) and then calculates the composite score. The feature selection is done be re-sampling random sets of the data and monitoring the outcome of the respective PCA analysis. The fractional size of the sampling set is called `trainsize`. The number of sampling repeats is coded in `runs`. The algorithm requires individual animal ids. The column header can be coded differently. Here, it is called `idvariable="animal_id"`. The first variable for the analysis after the meta-information starts at colum 14 and is coded in `varstart`. Again, there is an option to selectively exclude columns from the analysis (`exclude`).
+
+Additionally, the function can be used in two ways:
+
+1. with the object `scorevars` set to NA the data are screened for the most prominent feature contributions
+2. the so found feature sets can be specified, e.g., `scorevars=c("Sacc_pref", "social_interaction", "burrowing_rat", "openfield_rat")`.
+This will result in the calculation of a severity-based cluster distribution analysis using the input variables.
+
+
+```
+# This function calculates the cluster and frequency distribution of composite measures for severity attribution. 
+
+cms_clusters(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", 
+varstart=14, exclude="Seizures_n", scorevars=NA)
+
+```
+
+## cms_analysis
+The function takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsampling of the
+training data) and calculates general attributes as well as graphical distribution outputs. Again, the `raw` data are required as inputs. The `thresholds` variable is the first output from the `cms_clusters` function and is itself a list. The object `cluster_distribution` is the second output of the `cms_clusters` list and includes the frequency distributions of the most prominent features. If `savepath=NA`, no plot will be saved. Otherwise, if a path is given a cluster distribution plot for severity analysis of the subgroups will be stored at the location. 
+
+```
+# This function analyses the output of the specific cms_cluster function.
+
+cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
+
+```
+# Example Analysis 
+
+### Example 1: Identification of the most prominent (stable) features in the provided data set `episet_full`.
+
 ```{r setup}
 library(cms)
+ 
+cms_cl        <- cms_clusters(episet_full, 
+                              runs        = 100, 
+                              emptysize   = 0.2, 
+                              trainsize   = 0.8, 
+                              idvariable  = "animal_id", 
+                              varstart    = 14, 
+                              exclude     = "Seizures_n",
+                              scorevars   =  NA) 
+cms_cl
 ```
- I'm a Test.
+
+
+### Example 2: Specific feature analysis for severity comparisons.
+
+
+```{r setup 2}
+library(cms)
+ 
+cms_cl        <- cms_clusters(episet_full, 
+                              runs        = 100, 
+                              emptysize   = 0.2, 
+                              trainsize   = 0.8, 
+                              idvariable  = "animal_id", 
+                              varstart    = 14, 
+                              exclude     = "Seizures_n",
+                              scorevars   =  c("Sacc_pref", "social_interaction", "burrowing_rat", "openfield_rat")) 
+
+thresholds           <- cms_cl[[1]] 
+cluster_distribution <- cms_cl[[2]]  
+
+result               <- cms_analysis(episet_full, thresholds, cluster_distribution)
+result[[2]]
+```
+
+
+
+
+# References
+
+
+
+

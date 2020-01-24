@@ -1,6 +1,6 @@
-#' cms analysis
+#' Composite measurement analysis function
 #' 
-#' Takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsample of the training data) and calculates
+#' The function takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsampling of the training data) and calculates
 #' general attributes as well as graphical distribution outputs.
 #'
 #' @param raw requires the raw data list (also input in the cms_load function)
@@ -12,7 +12,7 @@
 #' @import utils
 #' @importFrom stats sd median
 #' 
-#' @return data.frame
+#' @return Data frame with the cluster distributions/severity attributions.+
 #'
 #' @export
 #'
@@ -96,7 +96,7 @@ cms_analysis <- function(raw, thresholds, cluster_distribution, savepath=NA){
   levels(distr_means$cluster) <- c("cluster1","cluster2","cluster3")
   distr_means$cluster         <- factor(distr_means$cluster, levels=c("cluster3","cluster2","cluster1"))
   
-  print(head(distr_means))
+  #print(head(distr_means))
   
   # create graph of the mean distributions of the 100 runs 
   p <- ggplot(distr_means, aes(x=n_treat, y=perc, fill=cluster)) +

@@ -23,23 +23,21 @@ knitr::opts_chunk$set(
 
 The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups and allows severity assessment between animal models.
 
-
-
 ## Dependencies
 The cms package has some dependencies. We advise installing/updating the following packages before using cms:  
 
+* made4 (Bioconductor)
 * ade4  
 * scatterplot3d  
 * lattice  
 * corrplot  
-* made4  
 * caret  
 * ggplot2  
 * reshape2  
 * plyr  
 * RColorBrewer  
 * gplots  
-* e1072  
+* e1071  
 
 ## Installation
 You can install the development version from [GitHub](https://github.com/) with:
