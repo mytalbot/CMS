@@ -11,6 +11,7 @@
 #' @param trainsize size of the "training data" in the fold subsamplings
 #' @param idvariable column header of the animal id variable in the data
 #' @param varstart column number with the first variable to start with - there shall be no general infomation on the right side of this number
+#' @param varend column number with the last index. defaults to NA for the full table 
 #' @param exclude naming column headers that shall be excluded from the data set
 #' @param scorevars if NA (default) the function will determine the most prominent variables in the sample data; NA can also be replaced by a vector of variables
 #' 
@@ -30,9 +31,8 @@
 #' 
 #' @export
 #'
-#'
-cms_clusters  <- function(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", varstart=14, exclude="Seizures_n",
-                          scorevars=NA){
+cms_clusters  <- function(raw=raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id",
+                          varstart=14, varend=NA, exclude="Seizures_n", scorevars=NA){
 
   # prepare the framework
   PC1loadings <- data.frame(matrix(nrow = 100, ncol = 10))
@@ -53,9 +53,16 @@ cms_clusters  <- function(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idva
     d_20     <- d[!d[,idvariable] %in% subset80,]
     
     # clean data and exclude single variables
-    d_pca          <- d_80[,varstart:dim(d_80)[2]]
-    d_pca[exclude] <- NULL
-    
+    if(is.na(varend)){
+      d_pca          <- d_80[,varstart:dim(d_80)[2]]  # varend
+      d_pca[exclude] <- NULL
+    }else{
+      d_pca          <- d_80[,varstart:varend]  # varend
+      d_pca[exclude] <- NULL
+      
+    }
+      
+      
     # curate missing values in PCA data & transform data (BoxCox)
     missing <- c()
     for(i in 1:ncol(d_pca)){
@@ -141,5 +148,8 @@ cms_clusters  <- function(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idva
   }else{ 
     return(list(thresholds, cluster_distribution))
   }
-  
 }
+
+
+
+

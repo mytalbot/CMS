@@ -181,7 +181,7 @@ cms_load(file, remove_this=NA)
 <div id="cms_clusters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cms_clusters" class="anchor"></a>cms_clusters</h2>
-<p>The algorithm takes the cleaned input data (<code>raw</code>), does some curation for missing values (<code>emptysize=0.2</code>, e.g., for eliminating data with more than 20 percent missing entries) and then calculates the composite score. The feature selection is done be re-sampling random sets of the data and monitoring the outcome of the respective PCA analysis. The fractional size of the sampling set is called <code>trainsize</code>. The number of sampling repeats is coded in <code>runs</code>. The algorithm requires individual animal ids. The column header can be coded differently. Here, it is called <code>idvariable="animal_id"</code>. The first variable for the analysis after the meta-information starts at colum 14 and is coded in <code>varstart</code>. Again, there is an option to selectively exclude columns from the analysis (<code>exclude</code>).</p>
+<p>The algorithm takes the cleaned input data (<code>raw</code>), does some curation for missing values (<code>emptysize=0.2</code>, e.g., for eliminating data with more than 20 percent missing entries) and then calculates the composite score. The feature selection is done be re-sampling random sets of the data and monitoring the outcome of the respective PCA analysis. The fractional size of the sampling set is called <code>trainsize</code>. The number of sampling repeats is coded in <code>runs</code>. The algorithm requires individual animal ids. The column header can be coded differently. Here, it is called <code>idvariable="animal_id"</code>. The first variable for the analysis after the meta-information starts at colum 14 and is coded in <code>varstart</code>. The algorithm will analyse the full data table, unless a limit is set in <code>varend</code>. Again, there is an option to selectively exclude columns from the analysis (<code>exclude</code>).</p>
 <p>Additionally, the function can be used in two ways:</p>
 <ol style="list-style-type: decimal">
 <li>with the object <code>scorevars</code> set to NA the data are screened for the most prominent feature contributions</li>
@@ -190,7 +190,7 @@ cms_load(file, remove_this=NA)
 <pre><code># This function calculates the cluster and frequency distribution of composite measures for severity attribution. 
 
 cms_clusters(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", 
-varstart=14, exclude="Seizures_n", scorevars=NA)
+varstart=14, varend=NA, exclude="Seizures_n", scorevars=NA)
 </code></pre>
 </div>
 <div id="cms_analysis" class="section level2">
@@ -211,6 +211,15 @@ cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
 <a href="#example-1-identification-of-the-most-prominent-stable-features-in-the-provided-data-set-episet_full-" class="anchor"></a>Example 1: Identification of the most prominent (stable) features in the provided data set <code>episet_full</code>.</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cms)
 <span class="co">#&gt; Lade nötiges Paket: ade4</span>
+<span class="co">#&gt; Lade nötiges Paket: made4</span>
+<span class="co">#&gt; Lade nötiges Paket: RColorBrewer</span>
+<span class="co">#&gt; Lade nötiges Paket: gplots</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attache Paket: 'gplots'</span>
+<span class="co">#&gt; The following object is masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     lowess</span>
+<span class="co">#&gt; Lade nötiges Paket: scatterplot3d</span>
  
 cms_cl        &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cms_clusters.html">cms_clusters</a></span>(episet_full, 
                               <span class="dt">runs        =</span> <span class="dv">100</span>, 

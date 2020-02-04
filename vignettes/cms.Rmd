@@ -114,7 +114,7 @@ cms_load(file, remove_this=NA)
 ```
 
 ## cms_clusters
-The algorithm takes the cleaned input data (`raw`), does some curation for missing values (`emptysize=0.2`, e.g., for eliminating data with more than 20 percent missing entries) and then calculates the composite score. The feature selection is done be re-sampling random sets of the data and monitoring the outcome of the respective PCA analysis. The fractional size of the sampling set is called `trainsize`. The number of sampling repeats is coded in `runs`. The algorithm requires individual animal ids. The column header can be coded differently. Here, it is called `idvariable="animal_id"`. The first variable for the analysis after the meta-information starts at colum 14 and is coded in `varstart`. Again, there is an option to selectively exclude columns from the analysis (`exclude`).
+The algorithm takes the cleaned input data (`raw`), does some curation for missing values (`emptysize=0.2`, e.g., for eliminating data with more than 20 percent missing entries) and then calculates the composite score. The feature selection is done be re-sampling random sets of the data and monitoring the outcome of the respective PCA analysis. The fractional size of the sampling set is called `trainsize`. The number of sampling repeats is coded in `runs`. The algorithm requires individual animal ids. The column header can be coded differently. Here, it is called `idvariable="animal_id"`. The first variable for the analysis after the meta-information starts at colum 14 and is coded in `varstart`. The algorithm will analyse the full data table, unless a limit is set in `varend`. Again, there is an option to selectively exclude columns from the analysis (`exclude`).
 
 Additionally, the function can be used in two ways:
 
@@ -127,7 +127,7 @@ This will result in the calculation of a severity-based cluster distribution ana
 # This function calculates the cluster and frequency distribution of composite measures for severity attribution. 
 
 cms_clusters(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", 
-varstart=14, exclude="Seizures_n", scorevars=NA)
+varstart=14, varend=NA, exclude="Seizures_n", scorevars=NA)
 
 ```
 

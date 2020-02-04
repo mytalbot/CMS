@@ -125,7 +125,7 @@ result in the calculation of a severity-based cluster distribution analysis usin
 
     <pre class="usage"><span class='fu'>cms_clusters</span>(<span class='kw'>raw</span> <span class='kw'>=</span> <span class='no'>raw</span>, <span class='kw'>runs</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>emptysize</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
   <span class='kw'>trainsize</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>idvariable</span> <span class='kw'>=</span> <span class='st'>"animal_id"</span>, <span class='kw'>varstart</span> <span class='kw'>=</span> <span class='fl'>14</span>,
-  <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='st'>"Seizures_n"</span>, <span class='kw'>scorevars</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+  <span class='kw'>varend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='st'>"Seizures_n"</span>, <span class='kw'>scorevars</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +153,10 @@ result in the calculation of a severity-based cluster distribution analysis usin
     <tr>
       <th>varstart</th>
       <td><p>column number with the first variable to start with - there shall be no general infomation on the right side of this number</p></td>
+    </tr>
+    <tr>
+      <th>varend</th>
+      <td><p>column number with the last index. defaults to NA for the full table</p></td>
     </tr>
     <tr>
       <th>exclude</th>

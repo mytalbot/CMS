@@ -6,7 +6,7 @@
 \usage{
 cms_clusters(raw = raw, runs = 100, emptysize = 0.2,
   trainsize = 0.8, idvariable = "animal_id", varstart = 14,
-  exclude = "Seizures_n", scorevars = NA)
+  varend = NA, exclude = "Seizures_n", scorevars = NA)
 }
 \arguments{
 \item{raw}{raw data (unprocessed or from cms_load)}
@@ -20,6 +20,8 @@ cms_clusters(raw = raw, runs = 100, emptysize = 0.2,
 \item{idvariable}{column header of the animal id variable in the data}
 
 \item{varstart}{column number with the first variable to start with - there shall be no general infomation on the right side of this number}
+
+\item{varend}{column number with the last index. defaults to NA for the full table}
 
 \item{exclude}{naming column headers that shall be excluded from the data set}
 

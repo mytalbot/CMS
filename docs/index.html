@@ -132,6 +132,15 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <p>The following example uses the (pre-cleaned) internalized epilepsy data (episet_full) set with three experimental subgroups. Further, the feature selection is repeated 100-fold. The variable <code>scorevars=NA</code> ensures that the most prominent features in the subgroups are determined. For cluster distribution analysis specific variables must be selected in <code>scorevars</code> (see Vignette).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(cms)
 <span class="co">#&gt; Lade nötiges Paket: ade4</span>
+<span class="co">#&gt; Lade nötiges Paket: made4</span>
+<span class="co">#&gt; Lade nötiges Paket: RColorBrewer</span>
+<span class="co">#&gt; Lade nötiges Paket: gplots</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attache Paket: 'gplots'</span>
+<span class="co">#&gt; The following object is masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     lowess</span>
+<span class="co">#&gt; Lade nötiges Paket: scatterplot3d</span>
 cms_cl        &lt;-<span class="st"> </span><span class="kw"><a href="reference/cms_clusters.html">cms_clusters</a></span>(episet_full, 
                               <span class="dt">runs        =</span> <span class="dv">100</span>, 
                               <span class="dt">emptysize   =</span> <span class="fl">0.2</span>, 

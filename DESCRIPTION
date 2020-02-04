@@ -27,7 +27,8 @@ LazyData: true
 URL: https://github.com/mytalbot/cms
 BugReports: https://github.com/mytalbot/cms/issues
 Depends: R (>= 2.10),
-    ade4
+    ade4,
+    made4
 Suggests: 
     knitr,
     rmarkdown
