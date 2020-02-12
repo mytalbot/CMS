@@ -86,19 +86,13 @@ severity your animals experienced during the experiment. Therefore, it can help 
 | Allocation of individual animals to a severity level | Direct translation of the different severity levels to those of the EU directive 2010/63 | 
 | Be a useful tool to complement an empiric severity assessment in an objective and scientific way | Replace the common severity assessment |
 
-
-
-
-
-
-
 # Data structure
 The cms algorithm requires the input data in specific long format. The table can be combined with meta information. The user has to specify a column from which on only measurement data are included. Before that column all entries can have informative character.
 
 Meta-information (=column headers) in the included data set are:  
 
 * **shortname**   a short term study identifier (e.g., kindling)
-* **for2591_id**  someinternal identifier  
+* **for2591_id**  internal identifier  
 * **species**     analysed species
 * **sex**         analysed sex
 * **strain**      animal strain id
@@ -190,7 +184,7 @@ cms_cl
 
 
 ### Example 2: Specific feature analysis for severity comparisons.
-
+In the resulting plots, darker colors refer to higher severity.
 
 ```{r setup 2}
 library(cms)
