@@ -11,23 +11,25 @@ Composite measure schemes (cms)
 
 The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups and allows severity assessment between animal models.
 
+[Click here for reading the cms Vignette.](http://talbotsr.com/cms/articles/cms.html)
+
 Dependencies
 ------------
 
 The cms package has some dependencies. We advise installing/updating the following packages before using cms:
 
+-   made4 (Bioconductor)
 -   ade4
 -   scatterplot3d
 -   lattice
 -   corrplot
--   made4
 -   caret
 -   ggplot2
 -   reshape2
 -   plyr
 -   RColorBrewer
 -   gplots
--   e1072
+-   e1071
 
 Installation
 ------------
@@ -48,6 +50,15 @@ The following example uses the (pre-cleaned) internalized epilepsy data (episet\
 ``` r
 library(cms)
 #> Loading required package: ade4
+#> Loading required package: made4
+#> Loading required package: RColorBrewer
+#> Loading required package: gplots
+#> 
+#> Attaching package: 'gplots'
+#> The following object is masked from 'package:stats':
+#> 
+#>     lowess
+#> Loading required package: scatterplot3d
 cms_cl        <- cms_clusters(episet_full, 
                               runs        = 100, 
                               emptysize   = 0.2, 

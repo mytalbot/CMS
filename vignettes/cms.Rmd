@@ -62,6 +62,35 @@ For more information on the cms package and the source code see:
 * the cms [GitHub repository](https://github.com/mytalbot/cms)  
 
 # Introduction 
+According to the EU directive 2010/63 it is essential to assess the severity of interventions and models in experimental animals.
+Therefore, sensitive and robust parameters are crucial. Based on the data set generated in three different epilepsy models promising
+parameters were selected and combined to a composite measure scheme. The cms package guides through the process of selecting potential
+parameters or to allocate your animals to clusters based on the cms. Related to the predefined or individual selection and combination of
+parameters the respective clusters and the distribution of the animals to these clusters will be visualized.  
+
+The calculated clusters describe different levels of severity. Please consider that the best parameters can vary for different models,
+species or even for different laboratories. Therefore, this tool can help to select the most interesting parameters from your individual,
+generated data.  
+
+For the interpretation of the different severity levels you have to consider that they are based on the highest severity animals
+experienced in your experiments but not necessarily the highest existing. Moreover, there might always be “better” parameters. So be aware
+of the limitations of your individual created cms. In conclusion, the cms package is a useful tool to get a retrospective overview of the
+severity your animals experienced during the experiment. Therefore, it can help to complement a mostly empiric severity assessment. 
+
+**What the cms package...**
+
+|  ... **can** do | ... **can’t** do |
+|:-----------------------------------|:-----------------------------------|
+| Helps to select interesting parameters for severity assessment | Interpretation of the selected parameters in terms of how useful they can be to assess the impairment of animals’ wellbeing |
+| Provides a basis for quantitative and comparative severity assessment (incl. comparison with data from the different epilepsy models) | |
+| Allocation of individual animals to a severity level | Direct translation of the different severity levels to those of the EU directive 2010/63 | 
+| Be a useful tool to complement an empiric severity assessment in an objective and scientific way | Replace the common severity assessment |
+
+
+
+
+
+
 
 # Data structure
 The cms algorithm requires the input data in specific long format. The table can be combined with meta information. The user has to specify a column from which on only measurement data are included. Before that column all entries can have informative character.
