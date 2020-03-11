@@ -169,8 +169,8 @@ cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
 ### Example 1: Identification of the most prominent (stable) features in the provided data set `episet_full`.
 
 ```{r setup}
-library(cms)
- 
+suppressPackageStartupMessages(library(cms))
+
 cms_cl        <- cms_clusters(episet_full, 
                               runs        = 100, 
                               emptysize   = 0.2, 
