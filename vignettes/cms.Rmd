@@ -187,8 +187,8 @@ cms_cl
 In the resulting plots, darker colors refer to higher severity.
 
 ```{r setup 2}
-library(cms)
- 
+suppressPackageStartupMessages(library(cms))
+
 cms_cl        <- cms_clusters(episet_full, 
                               runs        = 100, 
                               emptysize   = 0.2, 
