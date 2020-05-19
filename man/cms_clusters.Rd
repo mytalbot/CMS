@@ -4,9 +4,17 @@
 \alias{cms_clusters}
 \title{Cluster and frequency distribution of composite measures for severity attribution}
 \usage{
-cms_clusters(raw = raw, runs = 100, emptysize = 0.2,
-  trainsize = 0.8, idvariable = "animal_id", varstart = 14,
-  varend = NA, exclude = "Seizures_n", scorevars = NA)
+cms_clusters(
+  raw = raw,
+  runs = 100,
+  emptysize = 0.2,
+  trainsize = 0.8,
+  idvariable = "animal_id",
+  varstart = 14,
+  varend = NA,
+  exclude = "Seizures_n",
+  scorevars = NA
+)
 }
 \arguments{
 \item{raw}{raw data (unprocessed or from cms_load)}

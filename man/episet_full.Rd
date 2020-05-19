@@ -4,7 +4,9 @@
 \name{episet_full}
 \alias{episet_full}
 \title{Full data set rat epilepsy experiment}
-\format{A 943 x 72 data frame with rat epilepsy data.}
+\format{
+A 943 x 72 data frame with rat epilepsy data.
+}
 \usage{
 data(episet_full)
 }
@@ -23,19 +25,19 @@ were assessed. For a more detailed description of the models and the studies ple
 1.	Di Liberto, V., R. M. van Dijk, M. Brendel, A. M. Waldron, C. Möller, I. Koska, I. Seiffert, F. Gualtieri, F. J. Gildehaus,
 B. von Ungern-Sternberg, M. Lindner, S. Ziegler, R. Palme, R. Hellweg, P. Gass, P. Bartenstein, and H. Potschka. 2018.
 Imaging correlates of behavioral impairments: An experimental PET study in the rat pilocarpine epilepsy model. Neurobiology of 
-disease 118: 9-21.
+disease 118: 9-21.  
 
 2.	Koska, I., R. M. van Dijk, I. Seiffert, V. Di Liberto, C. Möller, R. Palme, R. Hellweg, and H. Potschka. 2019.
 Toward evidence-based severity assessment in rat models with repeated seizures: II. Chemical post-status epilepticus model. 
-Epilepsia 60: 2114-2127.
+Epilepsia 60: 2114-2127.  
 
 3.	Möller, C., F. Wolf, R. M. van Dijk, V. Di Liberto, V. Russmann, M. Keck, R. Palme, R. Hellweg, P. Gass, C. Otzdorff, 
 and H. Potschka. 2018. Toward evidence-based severity assessment in rat models with repeated seizures: I. Electrical kindling.
-Epilepsia 59: 765-777.
+Epilepsia 59: 765-777.  
 
 4.	Seiffert, I., R. M. van Dijk, I. Koska, V. Di Liberto, C. Möller, R. Palme, R. Hellweg, and H. Potschka. 2019. 
 Toward evidence-based severity assessment in rat models with repeated seizures: III. Electrical post-status epilepticus model. 
-Epilepsia 60: 1539-1551.
+Epilepsia 60: 1539-1551.  
 
 5.	van Dijk, R. M., V. Di Liberto, M. Brendel, A. M. Waldron, C. Möller, F. J. Gildehaus, B. von Ungern-Sternberg, M. Lindner, 
 S. Ziegler, R. Hellweg, P. Gass, P. Bartenstein, and H. Potschka. 2018. Imaging biomarkers of behavioral impairments: 
