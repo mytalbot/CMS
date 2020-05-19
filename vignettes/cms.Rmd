@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 ## About cms package
-In our paper **"Design of composite measure schemes for comparative severity assessment in animal-based neuroscience research: a case study focussed on rat epilepsy models"** we introduce composite measures schemes (cms) to assess severity in rat epilepsy models. We suggest a PCA-based algorithm to assess a plethora of outcome variables for their suitability as features in a simple composite score for comparative severity assessment.
+In our paper **"Design of composite measure schemes for comparative severity assessment in animal-based neuroscience research: a case study focussed on rat epilepsy models"** [@Dijk2020] we introduce composite measures schemes (cms) to assess severity in rat epilepsy models. We suggest a PCA-based algorithm to assess a plethora of outcome variables for their suitability as features in a simple composite score for comparative severity assessment.
 
 This vignette covers the basic functions for cms analysis in R [@RCoreTeam].
 
