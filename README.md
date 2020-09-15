@@ -1,40 +1,42 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-cms <img src="https://talbotsr.com/cms/logo.png" align="right" height="139" />
-==============================================================================
 
-Composite measure schemes (cms)
-===============================
+# cms <img src="https://talbotsr.com/cms/logo.png" align="right" height="139" />
 
-<!-- badges: start -->
-[![Travis build status](https://travis-ci.org/mytalbot/cms.svg?branch=master)](https://travis-ci.org/r-lib/usethis) <!-- badges: end -->
+# Composite measure schemes (cms)
 
-The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups and allows severity assessment between animal models.
+The cms package uses tabular data from rat epilepsy studies and applies
+a composite measures scheme (via PCA) to select the most prominent
+features. Further, variables can be selected to perform cluster analysis
+on a subset in order to build a composite score. Finally, the cluster
+distribution is displayed for the subgroups and allows severity
+assessment between animal models.
 
-[Click here for reading the cms Vignette.](http://talbotsr.com/cms/articles/cms.html)
+[Click here for reading the cms
+Vignette.](http://talbotsr.com/cms/articles/cms.html)
 
-Dependencies
-------------
+## Dependencies
 
-The cms package has some dependencies. We advise installing/updating the following packages before using cms:
+The cms package has some dependencies. We advise installing/updating the
+following packages before using cms:
 
--   made4 (Bioconductor)
--   ade4
--   scatterplot3d
--   lattice
--   corrplot
--   caret
--   ggplot2
--   reshape2
--   plyr
--   RColorBrewer
--   gplots
--   e1071
+  - made4 (Bioconductor)
+  - ade4  
+  - scatterplot3d  
+  - lattice  
+  - corrplot  
+  - caret  
+  - ggplot2  
+  - reshape2  
+  - plyr  
+  - RColorBrewer  
+  - gplots  
+  - e1071
 
-Installation
-------------
+## Installation
 
-You can install the development version from [GitHub](https://github.com/) with:
+You can install the development version from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -42,17 +44,23 @@ devtools::install_github("mytalbot/cms")
 library(cms)
 ```
 
-Example
--------
+## Example
 
-The following example uses the (pre-cleaned) internalized epilepsy data (episet\_full) set with three experimental subgroups. Further, the feature selection is repeated 100-fold. The variable `scorevars=NA` ensures that the most prominent features in the subgroups are determined. For cluster distribution analysis specific variables must be selected in `scorevars` (see Vignette).
+The following example uses the (pre-cleaned) internalized epilepsy data
+(episet\_full) set with three experimental subgroups. Further, the
+feature selection is repeated 100-fold. The variable `scorevars=NA`
+ensures that the most prominent features in the subgroups are
+determined. For cluster distribution analysis specific variables must be
+selected in `scorevars` (see Vignette).
 
 ``` r
 library(cms)
 #> Loading required package: ade4
+#> Warning: package 'ade4' was built under R version 3.6.3
 #> Loading required package: made4
 #> Loading required package: RColorBrewer
 #> Loading required package: gplots
+#> Warning: package 'gplots' was built under R version 3.6.3
 #> 
 #> Attaching package: 'gplots'
 #> The following object is masked from 'package:stats':
