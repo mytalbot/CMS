@@ -3,7 +3,7 @@
 
 # cms <img src="https://talbotsr.com/cms/logo.png" align="right" height="139" />
 
-# Composite measure schemes (cms)
+# Composite measures schemes (cms)
 
 The cms package uses tabular data from rat epilepsy studies and applies
 a composite measures scheme (via PCA) to select the most prominent
