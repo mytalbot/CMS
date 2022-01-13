@@ -10,6 +10,7 @@ cms_clusters(
   emptysize = 0.2,
   trainsize = 0.8,
   idvariable = "animal_id",
+  repeats = 3,
   varstart = 14,
   varend = NA,
   exclude = "Seizures_n",

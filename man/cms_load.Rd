@@ -4,7 +4,7 @@
 \alias{cms_load}
 \title{Loads data in the cms format into R}
 \usage{
-cms_load(file, remove_this = NA)
+cms_load(file, remove_this = NULL)
 }
 \arguments{
 \item{file}{path and filename as a string (e.g. C:/testfolder/testdata.txt)}

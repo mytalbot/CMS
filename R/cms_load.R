@@ -12,9 +12,14 @@
 #' @export
 #'
 
-cms_load <- function(file, remove_this=NA){
-  raw         <- read.table(file, header=T)
+cms_load <- function(file, remove_this=NULL){
+  raw         <- read.table(file, header=T, fill = TRUE)
   raw         <- raw[,colSums(is.na(raw))<nrow(raw)]
-  raw         <- raw[!raw[,"groups"]== remove_this, ]
+  
+  if(is.null(remove_this)){
+  }else{
+    raw         <- raw[!raw[,"groups"]== remove_this, ]
+  }
+   
   return(raw)
 }

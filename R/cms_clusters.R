@@ -31,7 +31,7 @@
 #' 
 #' @export
 #'
-cms_clusters  <- function(raw=raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id",
+cms_clusters  <- function(raw=raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", repeats=3,
                           varstart=14, varend=NA, exclude="Seizures_n", scorevars=NA){
 
   # prepare the framework
@@ -45,7 +45,7 @@ cms_clusters  <- function(raw=raw, runs=100, emptysize=0.2, trainsize=0.8, idvar
     set.seed(j)
     
     # train and test set
-    d        <- raw[raw[,"repeats"]==3,]
+    d        <- raw[raw[,"repeats"]==repeats,]
     d        <- d[, -which(colMeans(is.na(d)) > emptysize)]
     
     subset80 <- sample(d[[idvariable]], trainsize*length(d[[idvariable]]))
