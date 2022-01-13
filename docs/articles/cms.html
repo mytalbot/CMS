@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -63,7 +63,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/mytalbot/cms/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -77,7 +77,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="cms_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>cms Vignette</h1>
@@ -106,8 +106,8 @@
     install.packages("BiocManager")
 
 BiocManager::install("made4")</code></pre>
-<p>The remaining dependencies can be loaded via CRAN: ade4 <span class="citation">(Dray and Dufour 2007, <span class="citation">@ade4_2</span>, <span class="citation">@ade4_3</span>, <span class="citation">@ade4_4</span>)</span>, scatterplot3d <span class="citation">(Ligges and Mächler 2003)</span>, lattice <span class="citation">(Sarkar 2008)</span>, corrplot <span class="citation">(Wei and Simko 2017)</span>, caret <span class="citation">(Jed Wing et al. 2019)</span>, ggplot2 <span class="citation">(Wickham 2016)</span>, reshape2 <span class="citation">(Wickham 2007)</span>, plyr <span class="citation">(Wickham 2011)</span>, RColorBrewer <span class="citation">(Neuwirth 2014)</span>, gplots <span class="citation">(Warnes et al. 2019)</span>, e1071 <span class="citation">(Meyer et al. 2019)</span>. The following links can be used directly in the R console.</p>
-<pre><code>install.packages("ade4") 
+<p>The remaining dependencies can be loaded via CRAN: ade4 <span class="citation">(Dray and Dufour 2007, @ade4_2, @ade4_3, @ade4_4)</span>, scatterplot3d <span class="citation">(Ligges and Mächler 2003)</span>, lattice <span class="citation">(Sarkar 2008)</span>, corrplot <span class="citation">(Wei and Simko 2017)</span>, caret <span class="citation">(Jed Wing et al. 2019)</span>, ggplot2 <span class="citation">(Wickham 2016)</span>, reshape2 <span class="citation">(Wickham 2007)</span>, plyr <span class="citation">(Wickham 2011)</span>, RColorBrewer <span class="citation">(Neuwirth 2014)</span>, gplots <span class="citation">(Warnes et al. 2019)</span>, e1071 <span class="citation">(Meyer et al. 2019)</span>. The following links can be used directly in the R console.</p>
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("ade4") 
 install.packages("scatterplot3d")
 install.packages("lattice")
 install.packages("corrplot")
@@ -117,7 +117,7 @@ install.packages("reshape2")
 install.packages("plyr")
 install.packages("RColorBrewer")
 install.packages("gplots")
-install.packages("e1071")</code></pre>
+install.packages("e1071")</a></code></pre>
 <p>Please note that the cms package requires graphical components which are not fully used in the current version of the development version (v. 0.0.9000).</p>
 <p>See the <a href="#references">reference section</a> for more information on the included packages.</p>
 </div>
@@ -154,7 +154,7 @@ install.packages("e1071")</code></pre>
 <td align="left">Interpretation of the selected parameters in terms of how useful they can be to assess the impairment of animals’ wellbeing</td>
 </tr>
 <tr class="even">
-<td align="left">Provides a basis for quantitative and comparative severity assessment (incl. comparison with data from the different epilepsy models)</td>
+<td align="left">Provides a basis for quantitative and comparative severity assessment (incl. comparison with data from the different epilepsy models)</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
@@ -202,8 +202,8 @@ install.packages("e1071")</code></pre>
 <p>Measurement data in the provided example start at column No. 14. The following 57 variables are included. Note that the raw data include a lot of missing values (NA). These will be curated in the algorithm.</p>
 <p>Bwc, rgs, tint_mouse, nesting_rat, burrowing_rat, openfield_rat, cort_plasma, cort_fec, cort_fur_hair, food, social_interaction, Sacc_pref, OF_rearing_frequency, Of_immobile_duration, OF_center_time, BWB_WB, BWB_entries_in_BB, BWB_streching, BWB_LT, EPM_stretching, EPM_head_dip, EPM_closed_arms_duration, EPM_open_arms_duration, EPM_open1_3, Adrenal_glands, Creatincinase, Oxytocin, BDNF, Irwin, Seizures_n, Seizures_duration, Act_d, Act_n, HR_d, HR_n, NN.I_d, NN.I_n, NNx_d, NNx_n, pNNx_d, pNNx_n, RMSSD_d, RMSSD_n, SDNN_d, SDNN_n, MPPF_hippocampus_L, MPPF_hippocampus_R, MPPF_mPFC, MPPF_septum, FDG_mPFC, FDG_septum, FDG_amygdala, FDG_striatum, FDG_hypothalamus, FDG_thalamus, FDG_parietal_cortex, FDG_hippocampus</p>
 <p>The full data set is included in the cms package and can be accessed with:</p>
-<pre><code>library(cms)
-head(episet_full) </code></pre>
+<pre><code><a href="https://github.com/mytalbot/cms">library(cms)
+head(episet_full) </a></code></pre>
 </div>
 <div id="using-the-functions-of-the-cms-package" class="section level1">
 <h1 class="hasAnchor">
@@ -213,10 +213,10 @@ head(episet_full) </code></pre>
 <h2 class="hasAnchor">
 <a href="#cms_load" class="anchor"></a>cms_load</h2>
 <p>Data from a *.txt <code>file</code> will be read into R using the <code>cms_load</code> function so that it can be fed to the algorithm. The data should comprise of meta-information for sub-sampling and a general experimental overview. After the meta-section the variables should follow. The user has to specify the column number later that points to the first variable after the meta-section. The cms_load function requires a “repeats” column that is set to 3. If you do not have repeats, just add a column and fill its contents with 3. Sorry, we will address this little imperfection in a later step… The <code>remove_this</code> object can be used to remove specific columns from the data table (e.g., <code>remove_this=c("Init.SD", "total.SD", "Mean.SD")</code>). This is good for additional cleaning of the data set.</p>
-<pre><code># This function loads tabular text data into R.
+<pre><code><a href="../reference/cms_load.html"># This function loads tabular text data into R.
 
 cms_load(file, remove_this=NA)
-</code></pre>
+</a></code></pre>
 </div>
 <div id="cms_clusters" class="section level2">
 <h2 class="hasAnchor">
@@ -227,20 +227,20 @@ cms_load(file, remove_this=NA)
 <li>with the object <code>scorevars</code> set to NA the data are screened for the most prominent feature contributions</li>
 <li>the so found feature sets can be specified, e.g., <code>scorevars=c("Sacc_pref", "social_interaction", "burrowing_rat", "openfield_rat")</code>. This will result in the calculation of a severity-based cluster distribution analysis using the input variables.</li>
 </ol>
-<pre><code># This function calculates the cluster and frequency distribution of composite measures for severity attribution. 
+<pre><code><a href="../reference/cms_clusters.html"># This function calculates the cluster and frequency distribution of composite measures for severity attribution. 
 
 cms_clusters(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", 
 varstart=14, varend=NA, exclude="Seizures_n", scorevars=NA)
-</code></pre>
+</a></code></pre>
 </div>
 <div id="cms_analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cms_analysis" class="anchor"></a>cms_analysis</h2>
 <p>The function takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsampling of the training data) and calculates general attributes as well as graphical distribution outputs. Again, the <code>raw</code> data are required as inputs. The <code>thresholds</code> variable is the first output from the <code>cms_clusters</code> function and is itself a list. The object <code>cluster_distribution</code> is the second output of the <code>cms_clusters</code> list and includes the frequency distributions of the most prominent features. If <code>savepath=NA</code>, no plot will be saved. Otherwise, if a path is given a cluster distribution plot for severity analysis of the subgroups will be stored at the location.</p>
-<pre><code># This function analyses the output of the specific cms_cluster function.
+<pre><code><a href="../reference/cms_analysis.html"># This function analyses the output of the specific cms_cluster function.
 
 cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
-</code></pre>
+</a></code></pre>
 </div>
 </div>
 <div id="example-analyses" class="section level1">
@@ -249,19 +249,19 @@ cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
 <div id="example-1-identification-of-the-most-prominent-stable-features-in-the-provided-data-set-episet_full-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-1-identification-of-the-most-prominent-stable-features-in-the-provided-data-set-episet_full-" class="anchor"></a>Example 1: Identification of the most prominent (stable) features in the provided data set <code>episet_full</code>.</h3>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cms</span>))
-<span class="co">#&gt; Warning: Paket 'ade4' wurde unter R Version 3.6.3 erstellt</span>
-<span class="co">#&gt; Warning: Paket 'gplots' wurde unter R Version 3.6.3 erstellt</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mytalbot/cms">cms</a></span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Warning: Paket 'GenomeInfoDb' wurde unter R Version 4.0.5 erstellt</span>
 
-<span class="no">cms_cl</span>        <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cms_clusters.html">cms_clusters</a></span>(<span class="no">episet_full</span>,
-                              <span class="kw">runs</span>        <span class="kw">=</span> <span class="fl">100</span>,
-                              <span class="kw">emptysize</span>   <span class="kw">=</span> <span class="fl">0.2</span>,
-                              <span class="kw">trainsize</span>   <span class="kw">=</span> <span class="fl">0.8</span>,
-                              <span class="kw">idvariable</span>  <span class="kw">=</span> <span class="st">"animal_id"</span>,
-                              <span class="kw">varstart</span>    <span class="kw">=</span> <span class="fl">14</span>,
-                              <span class="kw">exclude</span>     <span class="kw">=</span> <span class="st">"Seizures_n"</span>,
-                              <span class="kw">scorevars</span>   <span class="kw">=</span>  <span class="fl">NA</span>)
-<span class="no">cms_cl</span>
+<span class="va">cms_cl</span>        <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cms_clusters.html">cms_clusters</a></span><span class="op">(</span><span class="va">episet_full</span>, 
+                              runs        <span class="op">=</span> <span class="fl">100</span>, 
+                              emptysize   <span class="op">=</span> <span class="fl">0.2</span>, 
+                              trainsize   <span class="op">=</span> <span class="fl">0.8</span>, 
+                              idvariable  <span class="op">=</span> <span class="st">"animal_id"</span>, 
+                              varstart    <span class="op">=</span> <span class="fl">14</span>, 
+                              exclude     <span class="op">=</span> <span class="st">"Seizures_n"</span>,
+                              scorevars   <span class="op">=</span>  <span class="cn">NA</span><span class="op">)</span> 
+<span class="va">cms_cl</span>
 <span class="co">#&gt;                      x freq  perc</span>
 <span class="co">#&gt; 1        burrowing_rat  100 25.00</span>
 <span class="co">#&gt; 8   social_interaction  100 25.00</span>
@@ -270,28 +270,29 @@ cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
 <span class="co">#&gt; 4 Of_immobile_duration   36  9.00</span>
 <span class="co">#&gt; 5 OF_rearing_frequency    6  1.50</span>
 <span class="co">#&gt; 3        BWB_streching    5  1.25</span>
-<span class="co">#&gt; 2               BWB_LT    4  1.00</span></pre></body></html></div>
+<span class="co">#&gt; 2               BWB_LT    4  1.00</span></code></pre></div>
 </div>
 <div id="example-2-specific-feature-analysis-for-severity-comparisons-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-2-specific-feature-analysis-for-severity-comparisons-" class="anchor"></a>Example 2: Specific feature analysis for severity comparisons.</h3>
 <p>In the resulting plots, darker colors refer to higher severity.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cms</span>))
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mytalbot/cms">cms</a></span><span class="op">)</span><span class="op">)</span>
 
-<span class="no">cms_cl</span>        <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cms_clusters.html">cms_clusters</a></span>(<span class="no">episet_full</span>,
-                              <span class="kw">runs</span>        <span class="kw">=</span> <span class="fl">100</span>,
-                              <span class="kw">emptysize</span>   <span class="kw">=</span> <span class="fl">0.2</span>,
-                              <span class="kw">trainsize</span>   <span class="kw">=</span> <span class="fl">0.8</span>,
-                              <span class="kw">idvariable</span>  <span class="kw">=</span> <span class="st">"animal_id"</span>,
-                              <span class="kw">varstart</span>    <span class="kw">=</span> <span class="fl">14</span>,
-                              <span class="kw">exclude</span>     <span class="kw">=</span> <span class="st">"Seizures_n"</span>,
-                              <span class="kw">scorevars</span>   <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Sacc_pref"</span>, <span class="st">"social_interaction"</span>, <span class="st">"burrowing_rat"</span>, <span class="st">"openfield_rat"</span>))
+<span class="va">cms_cl</span>        <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cms_clusters.html">cms_clusters</a></span><span class="op">(</span><span class="va">episet_full</span>, 
+                              runs        <span class="op">=</span> <span class="fl">100</span>, 
+                              emptysize   <span class="op">=</span> <span class="fl">0.2</span>, 
+                              trainsize   <span class="op">=</span> <span class="fl">0.8</span>, 
+                              idvariable  <span class="op">=</span> <span class="st">"animal_id"</span>, 
+                              varstart    <span class="op">=</span> <span class="fl">14</span>, 
+                              exclude     <span class="op">=</span> <span class="st">"Seizures_n"</span>,
+                              scorevars   <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sacc_pref"</span>, <span class="st">"social_interaction"</span>, <span class="st">"burrowing_rat"</span>, <span class="st">"openfield_rat"</span><span class="op">)</span><span class="op">)</span> 
 
-<span class="no">thresholds</span>           <span class="kw">&lt;-</span> <span class="no">cms_cl</span><span class="kw">[[</span><span class="fl">1</span>]]
-<span class="no">cluster_distribution</span> <span class="kw">&lt;-</span> <span class="no">cms_cl</span><span class="kw">[[</span><span class="fl">2</span>]]
+<span class="va">thresholds</span>           <span class="op">&lt;-</span> <span class="va">cms_cl</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> 
+<span class="va">cluster_distribution</span> <span class="op">&lt;-</span> <span class="va">cms_cl</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>  
 
-<span class="no">result</span>               <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cms_analysis.html">cms_analysis</a></span>(<span class="no">episet_full</span>, <span class="no">thresholds</span>, <span class="no">cluster_distribution</span>)
-<span class="no">result</span><span class="kw">[[</span><span class="fl">2</span>]]</pre></body></html></div>
+<span class="va">result</span>               <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cms_analysis.html">cms_analysis</a></span><span class="op">(</span><span class="va">episet_full</span>, <span class="va">thresholds</span>, <span class="va">cluster_distribution</span><span class="op">)</span>
+<span class="va">result</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <p><img src="cms_files/figure-html/setup%202-1.png" width="576"></p>
 </div>
 </div>
@@ -300,52 +301,52 @@ cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
 <div id="ref-ade4_2">
-<p>Bougeard, Stéphanie, and Stéphane Dray. 2018. “Supervised Multiblock Analysis in R with the ade4 Package.” <em>Journal of Statistical Software</em> 86 (1): 1–17. <a href="https://doi.org/10.18637/jss.v086.i01" class="uri">https://doi.org/10.18637/jss.v086.i01</a>.</p>
+<p>Bougeard, Stéphanie, and Stéphane Dray. 2018. “Supervised Multiblock Analysis in R with the ade4 Package.” <em>Journal of Statistical Software</em> 86 (1): 1–17. <a href="https://doi.org/10.18637/jss.v086.i01">https://doi.org/10.18637/jss.v086.i01</a>.</p>
 </div>
 <div id="ref-ade4_3">
-<p>Chessel, Daniel, Anne-Béatrice Dufour, and Jean Thioulouse. 2004. “The ade4 Package – I: One-Table Methods.” <em>R News</em> 4 (1): 5–10. <a href="https://cran.r-project.org/doc/Rnews/" class="uri">https://cran.r-project.org/doc/Rnews/</a>.</p>
+<p>Chessel, Daniel, Anne-Béatrice Dufour, and Jean Thioulouse. 2004. “The ade4 Package – I: One-Table Methods.” <em>R News</em> 4 (1): 5–10. <a href="https://cran.r-project.org/doc/Rnews/">https://cran.r-project.org/doc/Rnews/</a>.</p>
 </div>
 <div id="ref-Dijk2020">
-<p>Dijk, Roelof Maarten van, Ines Koska, Andre Bleich, Rene Tolba, Isabel Seiffert, Christina Möller, Valentina Di Liberto, Steven Roger Talbot, and Heidrun Potschka. 2020. “Design of Composite Measure Schemes for Comparative Severity Assessment in Animal-Based Neuroscience Research: A Case Study Focussed on Rat Epilepsy Models.” <em>PLOS ONE</em> 15 (5). Public Library of Science: 1–17. <a href="https://doi.org/10.1371/journal.pone.0230141" class="uri">https://doi.org/10.1371/journal.pone.0230141</a>.</p>
+<p>Dijk, Roelof Maarten van, Ines Koska, Andre Bleich, Rene Tolba, Isabel Seiffert, Christina Möller, Valentina Di Liberto, Steven Roger Talbot, and Heidrun Potschka. 2020. “Design of Composite Measure Schemes for Comparative Severity Assessment in Animal-Based Neuroscience Research: A Case Study Focussed on Rat Epilepsy Models.” <em>PLOS ONE</em> 15 (5): 1–17. <a href="https://doi.org/10.1371/journal.pone.0230141">https://doi.org/10.1371/journal.pone.0230141</a>.</p>
 </div>
 <div id="ref-ade4_1">
-<p>Dray, Stéphane, and Anne–Béatrice Dufour. 2007. “The ade4 Package: Implementing the Duality Diagram for Ecologists.” <em>Journal of Statistical Software</em> 22 (4): 1–20. <a href="https://doi.org/10.18637/jss.v022.i04" class="uri">https://doi.org/10.18637/jss.v022.i04</a>.</p>
+<p>Dray, Stéphane, and Anne–Béatrice Dufour. 2007. “The ade4 Package: Implementing the Duality Diagram for Ecologists.” <em>Journal of Statistical Software</em> 22 (4): 1–20. <a href="https://doi.org/10.18637/jss.v022.i04">https://doi.org/10.18637/jss.v022.i04</a>.</p>
 </div>
 <div id="ref-ade4_4">
-<p>Dray, Stéphane, Anne-Béatrice Dufour, and Daniel Chessel. 2007. “The ade4 Package – II: Two-Table and K-Table Methods.” <em>R News</em> 7 (2): 47–52. <a href="https://cran.r-project.org/doc/Rnews/" class="uri">https://cran.r-project.org/doc/Rnews/</a>.</p>
+<p>Dray, Stéphane, Anne-Béatrice Dufour, and Daniel Chessel. 2007. “The ade4 Package – II: Two-Table and K-Table Methods.” <em>R News</em> 7 (2): 47–52. <a href="https://cran.r-project.org/doc/Rnews/">https://cran.r-project.org/doc/Rnews/</a>.</p>
 </div>
 <div id="ref-caret">
-<p>Jed Wing, Max Kuhn. Contributions from, Steve Weston, Andre Williams, Chris Keefer, Allan Engelhardt, Tony Cooper, Zachary Mayer, et al. 2019. <em>Caret: Classification and Regression Training</em>. <a href="https://CRAN.R-project.org/package=caret" class="uri">https://CRAN.R-project.org/package=caret</a>.</p>
+<p>Jed Wing, Max Kuhn. Contributions from, Steve Weston, Andre Williams, Chris Keefer, Allan Engelhardt, Tony Cooper, Zachary Mayer, et al. 2019. <em>Caret: Classification and Regression Training</em>. <a href="https://CRAN.R-project.org/package=caret">https://CRAN.R-project.org/package=caret</a>.</p>
 </div>
 <div id="ref-sp3d">
-<p>Ligges, Uwe, and Martin Mächler. 2003. “Scatterplot3d - an R Package for Visualizing Multivariate Data.” <em>Journal of Statistical Software</em> 8 (11): 1–20. <a href="http://www.jstatsoft.org" class="uri">http://www.jstatsoft.org</a>.</p>
+<p>Ligges, Uwe, and Martin Mächler. 2003. “Scatterplot3d - an R Package for Visualizing Multivariate Data.” <em>Journal of Statistical Software</em> 8 (11): 1–20. <a href="http://www.jstatsoft.org">http://www.jstatsoft.org</a>.</p>
 </div>
 <div id="ref-e1071">
-<p>Meyer, David, Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel, and Friedrich Leisch. 2019. <em>E1071: Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), Tu Wien</em>. <a href="https://CRAN.R-project.org/package=e1071" class="uri">https://CRAN.R-project.org/package=e1071</a>.</p>
+<p>Meyer, David, Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel, and Friedrich Leisch. 2019. <em>E1071: Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), Tu Wien</em>. <a href="https://CRAN.R-project.org/package=e1071">https://CRAN.R-project.org/package=e1071</a>.</p>
 </div>
 <div id="ref-colbrew">
-<p>Neuwirth, Erich. 2014. <em>RColorBrewer: ColorBrewer Palettes</em>. <a href="https://CRAN.R-project.org/package=RColorBrewer" class="uri">https://CRAN.R-project.org/package=RColorBrewer</a>.</p>
+<p>Neuwirth, Erich. 2014. <em>RColorBrewer: ColorBrewer Palettes</em>. <a href="https://CRAN.R-project.org/package=RColorBrewer">https://CRAN.R-project.org/package=RColorBrewer</a>.</p>
 </div>
 <div id="ref-RCoreTeam">
-<p>R Core Team. 2019. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+<p>R Core Team. 2019. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
 </div>
 <div id="ref-lattice">
-<p>Sarkar, Deepayan. 2008. <em>Lattice: Multivariate Data Visualization with R</em>. New York: Springer. <a href="http://lmdvr.r-forge.r-project.org" class="uri">http://lmdvr.r-forge.r-project.org</a>.</p>
+<p>Sarkar, Deepayan. 2008. <em>Lattice: Multivariate Data Visualization with R</em>. New York: Springer. <a href="http://lmdvr.r-forge.r-project.org">http://lmdvr.r-forge.r-project.org</a>.</p>
 </div>
 <div id="ref-gplot">
-<p>Warnes, Gregory R., Ben Bolker, Lodewijk Bonebakker, Robert Gentleman, Wolfgang Huber Andy Liaw, Thomas Lumley, Martin Maechler, et al. 2019. <em>Gplots: Various R Programming Tools for Plotting Data</em>. <a href="https://CRAN.R-project.org/package=gplots" class="uri">https://CRAN.R-project.org/package=gplots</a>.</p>
+<p>Warnes, Gregory R., Ben Bolker, Lodewijk Bonebakker, Robert Gentleman, Wolfgang Huber Andy Liaw, Thomas Lumley, Martin Maechler, et al. 2019. <em>Gplots: Various R Programming Tools for Plotting Data</em>. <a href="https://CRAN.R-project.org/package=gplots">https://CRAN.R-project.org/package=gplots</a>.</p>
 </div>
 <div id="ref-corrplot2017">
-<p>Wei, Taiyun, and Viliam Simko. 2017. <em>R Package "Corrplot": Visualization of a Correlation Matrix</em>. <a href="https://github.com/taiyun/corrplot" class="uri">https://github.com/taiyun/corrplot</a>.</p>
+<p>Wei, Taiyun, and Viliam Simko. 2017. <em>R Package "Corrplot": Visualization of a Correlation Matrix</em>. <a href="https://github.com/taiyun/corrplot">https://github.com/taiyun/corrplot</a>.</p>
 </div>
 <div id="ref-reshape2">
-<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/" class="uri">http://www.jstatsoft.org/v21/i12/</a>.</p>
+<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/">http://www.jstatsoft.org/v21/i12/</a>.</p>
 </div>
 <div id="ref-plyr">
-<p>———. 2011. “The Split-Apply-Combine Strategy for Data Analysis.” <em>Journal of Statistical Software</em> 40 (1): 1–29. <a href="http://www.jstatsoft.org/v40/i01/" class="uri">http://www.jstatsoft.org/v40/i01/</a>.</p>
+<p>———. 2011. “The Split-Apply-Combine Strategy for Data Analysis.” <em>Journal of Statistical Software</em> 40 (1): 1–29. <a href="http://www.jstatsoft.org/v40/i01/">http://www.jstatsoft.org/v40/i01/</a>.</p>
 </div>
 <div id="ref-ggplot2">
-<p>———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a>.</p>
+<p>———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
 </div>
 </div>
 </div>
@@ -366,7 +367,7 @@ cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
