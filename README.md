@@ -5,6 +5,12 @@
 
 # Composite measures schemes (cms)
 
+<!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.org/mytalbot/cms.svg?branch=master)](https://travis-ci.org/r-lib/usethis)
+<!-- badges: end -->
+
 The cms package uses tabular data from rat epilepsy studies and applies
 a composite measures scheme (via PCA) to select the most prominent
 features. Further, variables can be selected to perform cluster analysis

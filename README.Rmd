@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 ```
 # Composite measures schemes (cms)
 
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/mytalbot/cms.svg?branch=master)](https://travis-ci.org/r-lib/usethis)
+<!-- badges: end -->
+
 The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups and allows severity assessment between animal models.
 
 *Please note:* the cms_analysis and cms_cluster functions are deprecated.
