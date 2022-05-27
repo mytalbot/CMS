@@ -91,34 +91,16 @@
 <h1 class="hasAnchor">
 <a href="#composite-measures-schemes-cms" class="anchor"></a>Composite measures schemes (cms)</h1>
 <p>The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups and allows severity assessment between animal models.</p>
-<p><a href="http://talbotsr.com/cms/articles/cms.html">Click here for reading the cms Vignette.</a></p>
+<p><em>Please note:</em> the cms_analysis and cms_cluster functions are deprecated.</p>
+<p><a href="http://talbotsr.com/cms/articles/cms.html">Click here for reading the outdated cms Vignette.</a></p>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a>Dependencies</h2>
 <p>The cms package has some dependencies. We advise installing/updating the following packages before using cms:</p>
 <ul>
-<li>made4 (Bioconductor)</li>
-<li>ade4<br>
-</li>
-<li>scatterplot3d<br>
-</li>
-<li>lattice<br>
-</li>
-<li>corrplot<br>
-</li>
-<li>caret<br>
-</li>
-<li>ggplot2<br>
-</li>
-<li>reshape2<br>
-</li>
-<li>plyr<br>
-</li>
-<li>RColorBrewer<br>
-</li>
-<li>gplots<br>
-</li>
-<li>e1071</li>
+<li>ggplot2</li>
+<li>dplyr</li>
+<li>factoextra</li>
 </ul>
 </div>
 <div id="installation" class="section level2">
@@ -130,42 +112,44 @@
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"mytalbot/cms"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mytalbot/cms">cms</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="example-cms" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>The following example uses the (pre-cleaned) internalized epilepsy data (episet_full) set with three experimental subgroups. Further, the feature selection is repeated 100-fold. The variable <code>scorevars=NA</code> ensures that the most prominent features in the subgroups are determined. For cluster distribution analysis specific variables must be selected in <code>scorevars</code> (see Vignette).</p>
+<a href="#example-cms" class="anchor"></a>Example cms</h2>
+<p>The following example uses the (pre-cleaned) internalized epilepsy data (episet_full) set with three experimental subgroups. Further, the feature selection is repeated 100-fold. The example uses the new <code>cms</code> function. Please note that all variables that shall be included must be specified in the <code>vars</code> object.</p>
+</div>
+<div id="working-example" class="section level2">
+<h2 class="hasAnchor">
+<a href="#working-example" class="anchor"></a>Working example</h2>
+<p><strong>Note:</strong> the following example shows the pooled data from the episet_full set, using the pooled subgroups. You might need to filter them, if you are interested in specific subsets.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mytalbot/cms">cms</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: ade4</span>
-<span class="co">#&gt; Warning: package 'ade4' was built under R version 3.6.3</span>
-<span class="co">#&gt; Loading required package: made4</span>
-<span class="co">#&gt; Loading required package: RColorBrewer</span>
-<span class="co">#&gt; Loading required package: gplots</span>
-<span class="co">#&gt; Warning: package 'gplots' was built under R version 3.6.3</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'gplots'</span>
-<span class="co">#&gt; The following object is masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     lowess</span>
-<span class="co">#&gt; Loading required package: scatterplot3d</span>
-<span class="va">cms_cl</span>        <span class="op">&lt;-</span> <span class="fu"><a href="reference/cms_clusters.html">cms_clusters</a></span><span class="op">(</span><span class="va">episet_full</span>, 
-                              runs        <span class="op">=</span> <span class="fl">100</span>, 
-                              emptysize   <span class="op">=</span> <span class="fl">0.2</span>, 
-                              trainsize   <span class="op">=</span> <span class="fl">0.8</span>, 
-                              idvariable  <span class="op">=</span> <span class="st">"animal_id"</span>, 
-                              varstart    <span class="op">=</span> <span class="fl">14</span>, 
-                              exclude     <span class="op">=</span> <span class="st">"Seizures_n"</span>,
-                              scorevars   <span class="op">=</span>  <span class="cn">NA</span><span class="op">)</span> 
-<span class="va">cms_cl</span>
-<span class="co">#&gt;                      x freq  perc</span>
-<span class="co">#&gt; 1        burrowing_rat  100 25.00</span>
-<span class="co">#&gt; 8   social_interaction  100 25.00</span>
-<span class="co">#&gt; 6        openfield_rat   95 23.75</span>
-<span class="co">#&gt; 7            Sacc_pref   54 13.50</span>
-<span class="co">#&gt; 4 Of_immobile_duration   36  9.00</span>
-<span class="co">#&gt; 5 OF_rearing_frequency    6  1.50</span>
-<span class="co">#&gt; 3        BWB_streching    5  1.25</span>
-<span class="co">#&gt; 2               BWB_LT    4  1.00</span></code></pre></div>
+<span class="co"># Do the cms feature analysis (with a limited set of variables)</span>
+<span class="va">usecase</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cms.html">cms</a></span><span class="op">(</span>raw        <span class="op">=</span> <span class="va">episet_full</span>,
+               runs       <span class="op">=</span> <span class="fl">100</span>,
+               idvariable <span class="op">=</span> <span class="st">"animal_id"</span>,
+               setsize    <span class="op">=</span> <span class="fl">0.8</span>,
+               variables  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sacc_pref"</span>, <span class="st">"social_interaction"</span>, 
+                              <span class="st">"burrowing_rat"</span>, <span class="st">"openfield_rat"</span><span class="op">)</span>,
+               maxPC      <span class="op">=</span> <span class="fl">4</span>,
+               clusters   <span class="op">=</span> <span class="fl">3</span>, 
+               showplot   <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># This also shows the plot</span>
+<span class="va">usecase</span><span class="op">$</span><span class="va">p</span></code></pre></div>
+<p><img src="reference/figures/README-example-1.png" width="100%"></p>
+<div id="table-of-the-cms-feature-frequency-distributions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#table-of-the-cms-feature-frequency-distributions" class="anchor"></a>Table of the cms feature frequency distributions</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">usecase</span><span class="op">$</span><span class="va">FRQ</span><span class="op">)</span>
+<span class="co">#&gt;   position                  x freq perc</span>
+<span class="co">#&gt; 1        1      burrowing_rat   81   81</span>
+<span class="co">#&gt; 2        1      openfield_rat    1    1</span>
+<span class="co">#&gt; 3        1          Sacc_pref   11   11</span>
+<span class="co">#&gt; 4        1 social_interaction    7    7</span>
+<span class="co">#&gt; 5        2      burrowing_rat    7    7</span>
+<span class="co">#&gt; 6        2      openfield_rat    8    8</span></code></pre></div>
+</div>
 </div>
 </div>
 

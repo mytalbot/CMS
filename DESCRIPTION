@@ -26,24 +26,15 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/mytalbot/cms
 BugReports: https://github.com/mytalbot/cms/issues
-Depends: R (>= 2.10),
-    ade4,
-    made4
+Depends: R (>= 2.10)
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    kableExtra
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Imports: stats,
-    scatterplot3d,
-    lattice,
-    corrplot,
-    made4,
-    caret,
     ggplot2,
-    reshape2,
-    plyr,
-    RColorBrewer,
-    gplots,
+    dplyr,
     utils,
-    e1071
+    factoextra

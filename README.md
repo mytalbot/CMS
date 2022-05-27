@@ -12,7 +12,10 @@ on a subset in order to build a composite score. Finally, the cluster
 distribution is displayed for the subgroups and allows severity
 assessment between animal models.
 
-[Click here for reading the cms
+*Please note:* the cms\_analysis and cms\_cluster functions are
+deprecated.
+
+[Click here for reading the outdated cms
 Vignette.](http://talbotsr.com/cms/articles/cms.html)
 
 ## Dependencies
@@ -20,18 +23,9 @@ Vignette.](http://talbotsr.com/cms/articles/cms.html)
 The cms package has some dependencies. We advise installing/updating the
 following packages before using cms:
 
-  - made4 (Bioconductor)
-  - ade4  
-  - scatterplot3d  
-  - lattice  
-  - corrplot  
-  - caret  
-  - ggplot2  
-  - reshape2  
-  - plyr  
-  - RColorBrewer  
-  - gplots  
-  - e1071
+  - ggplot2
+  - dplyr
+  - factoextra
 
 ## Installation
 
@@ -44,45 +38,48 @@ devtools::install_github("mytalbot/cms")
 library(cms)
 ```
 
-## Example
+## Example cms
 
 The following example uses the (pre-cleaned) internalized epilepsy data
 (episet\_full) set with three experimental subgroups. Further, the
-feature selection is repeated 100-fold. The variable `scorevars=NA`
-ensures that the most prominent features in the subgroups are
-determined. For cluster distribution analysis specific variables must be
-selected in `scorevars` (see Vignette).
+feature selection is repeated 100-fold. The example uses the new `cms`
+function. Please note that all variables that shall be included must be
+specified in the `vars` object.
+
+## Working example
+
+**Note:** the following example shows the pooled data from the
+episet\_full set, using the pooled subgroups. You might need to filter
+them, if you are interested in specific subsets.
 
 ``` r
 library(cms)
-#> Loading required package: ade4
-#> Warning: package 'ade4' was built under R version 3.6.3
-#> Loading required package: made4
-#> Loading required package: RColorBrewer
-#> Loading required package: gplots
-#> Warning: package 'gplots' was built under R version 3.6.3
-#> 
-#> Attaching package: 'gplots'
-#> The following object is masked from 'package:stats':
-#> 
-#>     lowess
-#> Loading required package: scatterplot3d
-cms_cl        <- cms_clusters(episet_full, 
-                              runs        = 100, 
-                              emptysize   = 0.2, 
-                              trainsize   = 0.8, 
-                              idvariable  = "animal_id", 
-                              varstart    = 14, 
-                              exclude     = "Seizures_n",
-                              scorevars   =  NA) 
-cms_cl
-#>                      x freq  perc
-#> 1        burrowing_rat  100 25.00
-#> 8   social_interaction  100 25.00
-#> 6        openfield_rat   95 23.75
-#> 7            Sacc_pref   54 13.50
-#> 4 Of_immobile_duration   36  9.00
-#> 5 OF_rearing_frequency    6  1.50
-#> 3        BWB_streching    5  1.25
-#> 2               BWB_LT    4  1.00
+# Do the cms feature analysis (with a limited set of variables)
+usecase <- cms(raw        = episet_full,
+               runs       = 100,
+               idvariable = "animal_id",
+               setsize    = 0.8,
+               variables  = c("Sacc_pref", "social_interaction", 
+                              "burrowing_rat", "openfield_rat"),
+               maxPC      = 4,
+               clusters   = 3, 
+               showplot   = FALSE)
+
+# This also shows the plot
+usecase$p
+```
+
+<img src="man/figures/README-example-1.png" width="100%" />
+
+### Table of the cms feature frequency distributions
+
+``` r
+head(usecase$FRQ)
+#>   position                  x freq perc
+#> 1        1      burrowing_rat   81   81
+#> 2        1      openfield_rat    1    1
+#> 3        1          Sacc_pref   11   11
+#> 4        1 social_interaction    7    7
+#> 5        2      burrowing_rat    7    7
+#> 6        2      openfield_rat    8    8
 ```

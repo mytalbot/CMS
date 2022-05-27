@@ -77,7 +77,8 @@
 
       
 
-      </header><script src="cms_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="cms_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="cms_files/kePrint-0.0.1/kePrint.js"></script><link href="cms_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>cms Vignette</h1>
@@ -94,32 +95,18 @@
 <div id="about-cms-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#about-cms-package" class="anchor"></a>About cms package</h2>
-<p>In our paper <strong>“Design of composite measure schemes for comparative severity assessment in animal-based neuroscience research: a case study focussed on rat epilepsy models”</strong> <span class="citation">(Dijk et al. 2020)</span> we introduce composite measures schemes (cms) to assess severity in rat epilepsy models. We suggest a PCA-based algorithm to assess a plethora of outcome variables for their suitability as features in a simple composite score for comparative severity assessment.</p>
+<p>In our paper“Design of composite measure schemes for comparative severity assessment in animal-basedneuroscience research: a case study focussed on rat epilepsy models” <span class="citation">(Dijk et al. 2020)</span>, we introduce composite measures schemes (cms) to assess severity in rat epilepsy models. We suggest a PCA-based algorithm to assess a plethora of outcome variables for their suitability as features in a simple composite score for comparative severity assessment.</p>
 <p>This vignette covers the basic functions for cms analysis in R <span class="citation">(R Core Team 2019)</span>.</p>
 </div>
 <div id="package-requirements" class="section level1">
 <h1 class="hasAnchor">
 <a href="#package-requirements" class="anchor"></a>Package Requirements</h1>
-<p>In order to use the cms package some dependencies need to be installed. The ade4 and made4 packages are an essential requirement for the cms algorithm. However, they are available from Bioconductor. They can be installed as such:</p>
-<p><a href="https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html">BiocManager</a></p>
-<pre><code>if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("made4")</code></pre>
-<p>The remaining dependencies can be loaded via CRAN: ade4 <span class="citation">(Dray and Dufour 2007, @ade4_2, @ade4_3, @ade4_4)</span>, scatterplot3d <span class="citation">(Ligges and Mächler 2003)</span>, lattice <span class="citation">(Sarkar 2008)</span>, corrplot <span class="citation">(Wei and Simko 2017)</span>, caret <span class="citation">(Jed Wing et al. 2019)</span>, ggplot2 <span class="citation">(Wickham 2016)</span>, reshape2 <span class="citation">(Wickham 2007)</span>, plyr <span class="citation">(Wickham 2011)</span>, RColorBrewer <span class="citation">(Neuwirth 2014)</span>, gplots <span class="citation">(Warnes et al. 2019)</span>, e1071 <span class="citation">(Meyer et al. 2019)</span>. The following links can be used directly in the R console.</p>
-<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("ade4") 
-install.packages("scatterplot3d")
-install.packages("lattice")
-install.packages("corrplot")
-install.packages("caret")
-install.packages("ggplot2")
-install.packages("reshape2")
-install.packages("plyr")
-install.packages("RColorBrewer")
-install.packages("gplots")
-install.packages("e1071")</a></code></pre>
-<p>Please note that the cms package requires graphical components which are not fully used in the current version of the development version (v. 0.0.9000).</p>
-<p>See the <a href="#references">reference section</a> for more information on the included packages.</p>
+<p>In order to use the cms package, some dependencies need to be installed. Please make sure to install the following R-packges from CRAN before using cms.</p>
+<p>ggplot2 <span class="citation">(Wickham 2016)</span><br>
+dplyr <span class="citation">(Wickham et al. 2021)</span> factoextra <span class="citation">(Kassambara and Mundt 2020)</span></p>
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("ggplot2") 
+install.packages("dplyr")
+install.packages("factoextra")</a></code></pre>
 </div>
 <div id="code-and-information" class="section level1">
 <h1 class="hasAnchor">
@@ -135,9 +122,10 @@ install.packages("e1071")</a></code></pre>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>According to the EU directive 2010/63 it is essential to assess the severity of interventions and models in experimental animals. Therefore, sensitive and robust parameters are crucial. Based on the data set generated in three different epilepsy models promising parameters were selected and combined to a composite measure scheme. The cms package guides through the process of selecting potential parameters or to allocate your animals to clusters based on the cms. Related to the predefined or individual selection and combination of parameters the respective clusters and the distribution of the animals to these clusters will be visualized.</p>
-<p>The calculated clusters describe different levels of severity. Please consider that the best parameters can vary for different models, species or even for different laboratories. Therefore, this tool can help to select the most interesting parameters from your individual, generated data.</p>
-<p>For the interpretation of the different severity levels you have to consider that they are based on the highest severity animals experienced in your experiments but not necessarily the highest existing. Moreover, there might always be “better” parameters. So be aware of the limitations of your individual created cms. In conclusion, the cms package is a useful tool to get a retrospective overview of the severity your animals experienced during the experiment. Therefore, it can help to complement a mostly empiric severity assessment.</p>
+<p>According to the EU directive 2010/63 it is essential to assess the severity of interventions and models in experimental animals. Therefore, sensitive and robust parameters are crucial. Based on the data generated in three different epilepsy models, promising parameters were selected and combined to a composite measure scheme. The cms package guides through the process of selecting potential parameters or to allocate your animals to clusters based on the cms. Related to the pre-defined or individual selection and combination of parameters, the respective clusters and the distribution of the animals to these clusters will be visualized.</p>
+<p>The calculated clusters describe different levels of severity. Please consider that the “best” parameters can vary in different models, species or even between different laboratories. Therefore, this tool can help selecting the most interesting parameters from individually generated data.</p>
+<p>For the interpretation of the different severity levels, one has to consider that they are based on the highest severity animals experienced in the experiments but not necessarily the highest existing. Moreover, there might always be “better” parameters. So be aware of the limitations of the individually created cms.</p>
+<p>In conclusion, the cms package is a useful tool to get a retrospective overview of the severity in animal data experienced during an xperiment. Therefore, it can help to complement a mostly empiric severity assessment.</p>
 <p><strong>What the cms package…</strong></p>
 <table class="table">
 <colgroup>
@@ -172,7 +160,7 @@ install.packages("e1071")</a></code></pre>
 <h1 class="hasAnchor">
 <a href="#data-structure" class="anchor"></a>Data structure</h1>
 <p>The cms algorithm requires the input data in specific long format. The table can be combined with meta information. The user has to specify a column from which on only measurement data are included. Before that column all entries can have informative character.</p>
-<p>Meta-information (=column headers) in the included data set are:</p>
+<p>Meta-information (=column headers) in the included data are:</p>
 <ul>
 <li>
 <strong>shortname</strong> a short term study identifier (e.g., kindling)</li>
@@ -198,155 +186,715 @@ install.packages("e1071")</a></code></pre>
 <li>
 <strong>repeats</strong> experimental repeats (mandatory!); if only one repeat set this column to 3</li>
 </ul>
-<p>Please note that most of the presented meta-data are optional. However, you may use any of the included criteria to filter the data for subsets.</p>
-<p>Measurement data in the provided example start at column No. 14. The following 57 variables are included. Note that the raw data include a lot of missing values (NA). These will be curated in the algorithm.</p>
+<p>Please note that most of the presented meta-data are optional. However, you may use any of the included criteria to filter the datafor subsets.</p>
+<p>Measurement data in the provided example start at column No. 14. The following 57 variables are included. Note that the raw data include a lot of missing values (NA). These can be curated in the algorithm using the <code>emptysize</code> object.</p>
 <p>Bwc, rgs, tint_mouse, nesting_rat, burrowing_rat, openfield_rat, cort_plasma, cort_fec, cort_fur_hair, food, social_interaction, Sacc_pref, OF_rearing_frequency, Of_immobile_duration, OF_center_time, BWB_WB, BWB_entries_in_BB, BWB_streching, BWB_LT, EPM_stretching, EPM_head_dip, EPM_closed_arms_duration, EPM_open_arms_duration, EPM_open1_3, Adrenal_glands, Creatincinase, Oxytocin, BDNF, Irwin, Seizures_n, Seizures_duration, Act_d, Act_n, HR_d, HR_n, NN.I_d, NN.I_n, NNx_d, NNx_n, pNNx_d, pNNx_n, RMSSD_d, RMSSD_n, SDNN_d, SDNN_n, MPPF_hippocampus_L, MPPF_hippocampus_R, MPPF_mPFC, MPPF_septum, FDG_mPFC, FDG_septum, FDG_amygdala, FDG_striatum, FDG_hypothalamus, FDG_thalamus, FDG_parietal_cortex, FDG_hippocampus</p>
-<p>The full data set is included in the cms package and can be accessed with:</p>
+<p>The full data are included in the cms package and can be accessed with:</p>
 <pre><code><a href="https://github.com/mytalbot/cms">library(cms)
 head(episet_full) </a></code></pre>
 </div>
-<div id="using-the-functions-of-the-cms-package" class="section level1">
+<div id="minimum-data" class="section level1">
 <h1 class="hasAnchor">
-<a href="#using-the-functions-of-the-cms-package" class="anchor"></a>Using the functions of the cms package</h1>
-<p>The following section explains the functions of this package and how to use them.</p>
-<div id="cms_load" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cms_load" class="anchor"></a>cms_load</h2>
-<p>Data from a *.txt <code>file</code> will be read into R using the <code>cms_load</code> function so that it can be fed to the algorithm. The data should comprise of meta-information for sub-sampling and a general experimental overview. After the meta-section the variables should follow. The user has to specify the column number later that points to the first variable after the meta-section. The cms_load function requires a “repeats” column that is set to 3. If you do not have repeats, just add a column and fill its contents with 3. Sorry, we will address this little imperfection in a later step… The <code>remove_this</code> object can be used to remove specific columns from the data table (e.g., <code>remove_this=c("Init.SD", "total.SD", "Mean.SD")</code>). This is good for additional cleaning of the data set.</p>
-<pre><code><a href="../reference/cms_load.html"># This function loads tabular text data into R.
-
-cms_load(file, remove_this=NA)
-</a></code></pre>
+<a href="#minimum-data" class="anchor"></a>Minimum data</h1>
+<p>The cms function requires a minimum on information to work. Depending on the number of subsets, the mandatory table fields are:</p>
+<p>animal_id<br>
+treatment (e.g., “naive”, “sham” and “SE”)<br>
+mod (e.g., “chem”, “elec” and “kind”)<br>
+variables (e.g., burrowing, corticosterone, openfield,…)</p>
+<p>The treatment and mod columns can be used for subsetting or pooling the data.</p>
 </div>
-<div id="cms_clusters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cms_clusters" class="anchor"></a>cms_clusters</h2>
-<p>The algorithm takes the cleaned input data (<code>raw</code>), does some curation for missing values (<code>emptysize=0.2</code>, e.g., for eliminating data with more than 20 percent missing entries) and then calculates the composite score. The feature selection is done be re-sampling random sets of the data and monitoring the outcome of the respective PCA analysis. The fractional size of the sampling set is called <code>trainsize</code>. The number of sampling repeats is coded in <code>runs</code>. The algorithm requires individual animal ids. The column header can be coded differently. Here, it is called <code>idvariable="animal_id"</code>. The first variable for the analysis after the meta-information starts at colum 14 and is coded in <code>varstart</code>. The algorithm will analyse the full data table, unless a limit is set in <code>varend</code>. Again, there is an option to selectively exclude columns from the analysis (<code>exclude</code>).</p>
-<p>Additionally, the function can be used in two ways:</p>
-<ol style="list-style-type: decimal">
-<li>with the object <code>scorevars</code> set to NA the data are screened for the most prominent feature contributions</li>
-<li>the so found feature sets can be specified, e.g., <code>scorevars=c("Sacc_pref", "social_interaction", "burrowing_rat", "openfield_rat")</code>. This will result in the calculation of a severity-based cluster distribution analysis using the input variables.</li>
-</ol>
-<pre><code><a href="../reference/cms_clusters.html"># This function calculates the cluster and frequency distribution of composite measures for severity attribution. 
-
-cms_clusters(raw= raw, runs=100, emptysize=0.2, trainsize=0.8, idvariable="animal_id", 
-varstart=14, varend=NA, exclude="Seizures_n", scorevars=NA)
-</a></code></pre>
-</div>
-<div id="cms_analysis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cms_analysis" class="anchor"></a>cms_analysis</h2>
-<p>The function takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsampling of the training data) and calculates general attributes as well as graphical distribution outputs. Again, the <code>raw</code> data are required as inputs. The <code>thresholds</code> variable is the first output from the <code>cms_clusters</code> function and is itself a list. The object <code>cluster_distribution</code> is the second output of the <code>cms_clusters</code> list and includes the frequency distributions of the most prominent features. If <code>savepath=NA</code>, no plot will be saved. Otherwise, if a path is given a cluster distribution plot for severity analysis of the subgroups will be stored at the location.</p>
-<pre><code><a href="../reference/cms_analysis.html"># This function analyses the output of the specific cms_cluster function.
-
-cms_analysis(raw, thresholds, cluster_distribution, savepath=NA)
-</a></code></pre>
-</div>
-</div>
-<div id="example-analyses" class="section level1">
+<div id="example-1" class="section level1">
 <h1 class="hasAnchor">
-<a href="#example-analyses" class="anchor"></a>Example Analyses</h1>
-<div id="example-1-identification-of-the-most-prominent-stable-features-in-the-provided-data-set-episet_full-" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-1-identification-of-the-most-prominent-stable-features-in-the-provided-data-set-episet_full-" class="anchor"></a>Example 1: Identification of the most prominent (stable) features in the provided data set <code>episet_full</code>.</h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mytalbot/cms">cms</a></span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Paket 'GenomeInfoDb' wurde unter R Version 4.0.5 erstellt</span>
+<a href="#example-1" class="anchor"></a>Example 1</h1>
+<p>Let’s analyze repeat No. 3 from the episet_full and use the a battery of 23 variables in the data to extract features. Note, that this analysis uses the pooled treatment (“naive”, “SE” and “sham”) and mod (“chem”, “elec” and “kind”) argument.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># first we select only the repeats = 3</span>
+<span class="va">set</span>       <span class="op">&lt;-</span> <span class="fu">cms</span><span class="fu">::</span><span class="va"><a href="../reference/episet_full.html">episet_full</a></span><span class="op">[</span><span class="va">episet_full</span><span class="op">$</span><span class="va">repeats</span> <span class="op">%in%</span> <span class="fl">3</span>, <span class="op">]</span>
 
-<span class="va">cms_cl</span>        <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cms_clusters.html">cms_clusters</a></span><span class="op">(</span><span class="va">episet_full</span>, 
-                              runs        <span class="op">=</span> <span class="fl">100</span>, 
-                              emptysize   <span class="op">=</span> <span class="fl">0.2</span>, 
-                              trainsize   <span class="op">=</span> <span class="fl">0.8</span>, 
-                              idvariable  <span class="op">=</span> <span class="st">"animal_id"</span>, 
-                              varstart    <span class="op">=</span> <span class="fl">14</span>, 
-                              exclude     <span class="op">=</span> <span class="st">"Seizures_n"</span>,
-                              scorevars   <span class="op">=</span>  <span class="cn">NA</span><span class="op">)</span> 
-<span class="va">cms_cl</span>
-<span class="co">#&gt;                      x freq  perc</span>
-<span class="co">#&gt; 1        burrowing_rat  100 25.00</span>
-<span class="co">#&gt; 8   social_interaction  100 25.00</span>
-<span class="co">#&gt; 6        openfield_rat   95 23.75</span>
-<span class="co">#&gt; 7            Sacc_pref   54 13.50</span>
-<span class="co">#&gt; 4 Of_immobile_duration   36  9.00</span>
-<span class="co">#&gt; 5 OF_rearing_frequency    6  1.50</span>
-<span class="co">#&gt; 3        BWB_streching    5  1.25</span>
-<span class="co">#&gt; 2               BWB_LT    4  1.00</span></code></pre></div>
+<span class="co"># Now the variables that shall be testes are called in a vector</span>
+<span class="va">variables</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sacc_pref"</span>, <span class="st">"social_interaction"</span>, 
+               <span class="st">"burrowing_rat"</span>, <span class="st">"openfield_rat"</span><span class="op">)</span>
+
+<span class="co"># do the cms feature analysis</span>
+<span class="va">features</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cms.html">cms</a></span><span class="op">(</span>raw        <span class="op">=</span> <span class="va">set</span>,
+                 runs       <span class="op">=</span> <span class="fl">300</span>,
+                 idvariable <span class="op">=</span> <span class="st">"animal_id"</span>,
+                 setsize    <span class="op">=</span> <span class="fl">0.8</span>,
+                 variables  <span class="op">=</span> <span class="va">variables</span>,
+                 maxPC      <span class="op">=</span> <span class="fl">4</span>,
+                 clusters   <span class="op">=</span> <span class="fl">3</span>, 
+                 showplot   <span class="op">=</span> <span class="cn">FALSE</span>,
+                 legendpos  <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">features</span><span class="op">$</span><span class="va">p</span></code></pre></div>
+<div class="figure">
+<img src="cms_files/figure-html/unnamed-chunk-4-1.png" alt="Feature distributions after cms analysis." width="576"><p class="caption">
+Feature distributions after cms analysis.
+</p>
 </div>
-<div id="example-2-specific-feature-analysis-for-severity-comparisons-" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-2-specific-feature-analysis-for-severity-comparisons-" class="anchor"></a>Example 2: Specific feature analysis for severity comparisons.</h3>
-<p>In the resulting plots, darker colors refer to higher severity.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mytalbot/cms">cms</a></span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">cms_cl</span>        <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cms_clusters.html">cms_clusters</a></span><span class="op">(</span><span class="va">episet_full</span>, 
-                              runs        <span class="op">=</span> <span class="fl">100</span>, 
-                              emptysize   <span class="op">=</span> <span class="fl">0.2</span>, 
-                              trainsize   <span class="op">=</span> <span class="fl">0.8</span>, 
-                              idvariable  <span class="op">=</span> <span class="st">"animal_id"</span>, 
-                              varstart    <span class="op">=</span> <span class="fl">14</span>, 
-                              exclude     <span class="op">=</span> <span class="st">"Seizures_n"</span>,
-                              scorevars   <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sacc_pref"</span>, <span class="st">"social_interaction"</span>, <span class="st">"burrowing_rat"</span>, <span class="st">"openfield_rat"</span><span class="op">)</span><span class="op">)</span> 
-
-<span class="va">thresholds</span>           <span class="op">&lt;-</span> <span class="va">cms_cl</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> 
-<span class="va">cluster_distribution</span> <span class="op">&lt;-</span> <span class="va">cms_cl</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>  
-
-<span class="va">result</span>               <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cms_analysis.html">cms_analysis</a></span><span class="op">(</span><span class="va">episet_full</span>, <span class="va">thresholds</span>, <span class="va">cluster_distribution</span><span class="op">)</span>
-<span class="va">result</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p><img src="cms_files/figure-html/setup%202-1.png" width="576"></p>
+<p>The plot is rather crowded so that the information we are seeking is better extracted from the attached frequency (features$FRQ) table. Only looking at the first 10 rows.</p>
+<table class="table table">
+<thead><tr>
+<th style="text-align:right;">
+position
+</th>
+<th style="text-align:left;">
+x
+</th>
+<th style="text-align:right;">
+freq
+</th>
+<th style="text-align:right;">
+perc
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+burrowing_rat
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+17.67
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+openfield_rat
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+6.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Sacc_pref
+</td>
+<td style="text-align:right;">
+117
+</td>
+<td style="text-align:right;">
+39.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+social_interaction
+</td>
+<td style="text-align:right;">
+112
+</td>
+<td style="text-align:right;">
+37.33
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+burrowing_rat
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+openfield_rat
+</td>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:right;">
+27.33
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Sacc_pref
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+23.33
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+social_interaction
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:right;">
+24.33
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+burrowing_rat
+</td>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:right;">
+27.67
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+openfield_rat
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+36.00
+</td>
+</tr>
+</tbody>
+</table>
+<p>The result shows the following feature order in repeats=3, with the above listed variables, using 4 principle components in 100 repeated runs: BWB_WB (40%) &gt; BWB_LT (32%) &gt; Adrenal_glands (20%) &gt; cort_fec (6%) &gt; openfield_rat (1%) &gt; social_interaction (1%).</p>
+<p>The remaining variables were not selected and/or not contributing to the PCA. Therefore, they were not deemed to be relevant features.</p>
 </div>
+<div id="cluster-analysis" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cluster-analysis" class="anchor"></a>Cluster analysis</h1>
+<p>The cms function also calculates a composite score from the principal component scores. This “compscore” is simply the sum of the 1 to <code>maxPC</code> PCA scores. The result is stored in the result of the cms function as a list object. In the upper example, we can access this information with features<span class="math inline">\(reportdata\)</span>compscore.</p>
+<p>The observant reader might have noticed the clusters=3 object in the cms function. This is the number of clusters that shall be applied to the “compscore”. Unfortunately, this is a heuristic. This means: the user will have to figure out how many clusters are correct for the data. The cluster information, or better: the distribution of the clusters are characteristic for specific subgroups.</p>
+<p>Fortunately, the cms function takes care of the heuristic determination of the number of clusters. The weighted sums of squares are calculated with the 1 to <code>maxPC</code> PCA scores of the data and the selected number of clusters is marked with a vertical line. With the Kaiser-Guttman criterion (“ellbow method”) the ideal number of clusters can be inferred.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">features</span><span class="op">$</span><span class="va">pscree</span>
+<span class="co">#&gt; NULL</span></code></pre></div>
+<p>Now it becomes clear, why we have kept the subgroup information in the feature extraction above. We can easily control the subgroups with the dplyr package and plot the cluster distributions. The plot_cms function will take care of this.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cms_clustering</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_cms.html">plot_cms</a></span><span class="op">(</span>cmsresult <span class="op">=</span> <span class="va">features</span>, 
+                           rotateX   <span class="op">=</span> <span class="fl">45</span><span class="op">)</span>
+<span class="va">cms_clustering</span><span class="op">$</span><span class="va">p</span></code></pre></div>
+<div class="figure">
+<img src="cms_files/figure-html/unnamed-chunk-7-1.png" alt="Cluster frequencies after cms analysis." width="576"><p class="caption">
+Cluster frequencies after cms analysis.
+</p>
+</div>
+<table class="table table">
+<thead><tr>
+<th style="text-align:left;">
+treatment
+</th>
+<th style="text-align:left;">
+mod
+</th>
+<th style="text-align:right;">
+cluster
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+freq
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3629
+</td>
+<td style="text-align:right;">
+63.1899704
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2114
+</td>
+<td style="text-align:right;">
+36.8100296
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4154
+</td>
+<td style="text-align:right;">
+75.5272727
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1324
+</td>
+<td style="text-align:right;">
+24.0727273
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+0.4000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+657
+</td>
+<td style="text-align:right;">
+22.7571874
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2093
+</td>
+<td style="text-align:right;">
+72.4974021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:right;">
+4.7454105
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1580
+</td>
+<td style="text-align:right;">
+16.9146772
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3986
+</td>
+<td style="text-align:right;">
+42.6720908
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3775
+</td>
+<td style="text-align:right;">
+40.4132320
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+886
+</td>
+<td style="text-align:right;">
+14.3644617
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2611
+</td>
+<td style="text-align:right;">
+42.3313878
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2671
+</td>
+<td style="text-align:right;">
+43.3041505
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+811
+</td>
+<td style="text-align:right;">
+27.9462440
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1919
+</td>
+<td style="text-align:right;">
+66.1268091
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+5.9269469
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4774
+</td>
+<td style="text-align:right;">
+66.4532294
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2398
+</td>
+<td style="text-align:right;">
+33.3797327
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0.1670379
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3962
+</td>
+<td style="text-align:right;">
+65.9344317
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1837
+</td>
+<td style="text-align:right;">
+30.5708105
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+210
+</td>
+<td style="text-align:right;">
+3.4947579
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1353
+</td>
+<td style="text-align:right;">
+47.2086532
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1362
+</td>
+<td style="text-align:right;">
+47.5226797
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+151
+</td>
+<td style="text-align:right;">
+5.2686671
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
-<div id="ref-ade4_2">
-<p>Bougeard, Stéphanie, and Stéphane Dray. 2018. “Supervised Multiblock Analysis in R with the ade4 Package.” <em>Journal of Statistical Software</em> 86 (1): 1–17. <a href="https://doi.org/10.18637/jss.v086.i01">https://doi.org/10.18637/jss.v086.i01</a>.</p>
-</div>
-<div id="ref-ade4_3">
-<p>Chessel, Daniel, Anne-Béatrice Dufour, and Jean Thioulouse. 2004. “The ade4 Package – I: One-Table Methods.” <em>R News</em> 4 (1): 5–10. <a href="https://cran.r-project.org/doc/Rnews/">https://cran.r-project.org/doc/Rnews/</a>.</p>
-</div>
 <div id="ref-Dijk2020">
 <p>Dijk, Roelof Maarten van, Ines Koska, Andre Bleich, Rene Tolba, Isabel Seiffert, Christina Möller, Valentina Di Liberto, Steven Roger Talbot, and Heidrun Potschka. 2020. “Design of Composite Measure Schemes for Comparative Severity Assessment in Animal-Based Neuroscience Research: A Case Study Focussed on Rat Epilepsy Models.” <em>PLOS ONE</em> 15 (5): 1–17. <a href="https://doi.org/10.1371/journal.pone.0230141">https://doi.org/10.1371/journal.pone.0230141</a>.</p>
 </div>
-<div id="ref-ade4_1">
-<p>Dray, Stéphane, and Anne–Béatrice Dufour. 2007. “The ade4 Package: Implementing the Duality Diagram for Ecologists.” <em>Journal of Statistical Software</em> 22 (4): 1–20. <a href="https://doi.org/10.18637/jss.v022.i04">https://doi.org/10.18637/jss.v022.i04</a>.</p>
-</div>
-<div id="ref-ade4_4">
-<p>Dray, Stéphane, Anne-Béatrice Dufour, and Daniel Chessel. 2007. “The ade4 Package – II: Two-Table and K-Table Methods.” <em>R News</em> 7 (2): 47–52. <a href="https://cran.r-project.org/doc/Rnews/">https://cran.r-project.org/doc/Rnews/</a>.</p>
-</div>
-<div id="ref-caret">
-<p>Jed Wing, Max Kuhn. Contributions from, Steve Weston, Andre Williams, Chris Keefer, Allan Engelhardt, Tony Cooper, Zachary Mayer, et al. 2019. <em>Caret: Classification and Regression Training</em>. <a href="https://CRAN.R-project.org/package=caret">https://CRAN.R-project.org/package=caret</a>.</p>
-</div>
-<div id="ref-sp3d">
-<p>Ligges, Uwe, and Martin Mächler. 2003. “Scatterplot3d - an R Package for Visualizing Multivariate Data.” <em>Journal of Statistical Software</em> 8 (11): 1–20. <a href="http://www.jstatsoft.org">http://www.jstatsoft.org</a>.</p>
-</div>
-<div id="ref-e1071">
-<p>Meyer, David, Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel, and Friedrich Leisch. 2019. <em>E1071: Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), Tu Wien</em>. <a href="https://CRAN.R-project.org/package=e1071">https://CRAN.R-project.org/package=e1071</a>.</p>
-</div>
-<div id="ref-colbrew">
-<p>Neuwirth, Erich. 2014. <em>RColorBrewer: ColorBrewer Palettes</em>. <a href="https://CRAN.R-project.org/package=RColorBrewer">https://CRAN.R-project.org/package=RColorBrewer</a>.</p>
+<div id="ref-factoextra">
+<p>Kassambara, Alboukadel, and Fabian Mundt. 2020. <em>Factoextra: Extract and Visualize the Results of Multivariate Data Analyses</em>. <a href="https://CRAN.R-project.org/package=factoextra">https://CRAN.R-project.org/package=factoextra</a>.</p>
 </div>
 <div id="ref-RCoreTeam">
 <p>R Core Team. 2019. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
 </div>
-<div id="ref-lattice">
-<p>Sarkar, Deepayan. 2008. <em>Lattice: Multivariate Data Visualization with R</em>. New York: Springer. <a href="http://lmdvr.r-forge.r-project.org">http://lmdvr.r-forge.r-project.org</a>.</p>
-</div>
-<div id="ref-gplot">
-<p>Warnes, Gregory R., Ben Bolker, Lodewijk Bonebakker, Robert Gentleman, Wolfgang Huber Andy Liaw, Thomas Lumley, Martin Maechler, et al. 2019. <em>Gplots: Various R Programming Tools for Plotting Data</em>. <a href="https://CRAN.R-project.org/package=gplots">https://CRAN.R-project.org/package=gplots</a>.</p>
-</div>
-<div id="ref-corrplot2017">
-<p>Wei, Taiyun, and Viliam Simko. 2017. <em>R Package "Corrplot": Visualization of a Correlation Matrix</em>. <a href="https://github.com/taiyun/corrplot">https://github.com/taiyun/corrplot</a>.</p>
-</div>
-<div id="ref-reshape2">
-<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/">http://www.jstatsoft.org/v21/i12/</a>.</p>
-</div>
-<div id="ref-plyr">
-<p>———. 2011. “The Split-Apply-Combine Strategy for Data Analysis.” <em>Journal of Statistical Software</em> 40 (1): 1–29. <a href="http://www.jstatsoft.org/v40/i01/">http://www.jstatsoft.org/v40/i01/</a>.</p>
-</div>
 <div id="ref-ggplot2">
-<p>———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
+<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+<div id="ref-dplyr">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
 </div>
 </div>
 </div>

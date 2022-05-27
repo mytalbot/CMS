@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • cms</title>
+<title>Composite measures function — cms • cms</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Composite measures function — cms" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -66,7 +66,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -119,60 +119,74 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Composite measures function</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mytalbot/cms/blob/master/R/cms.R'><code>R/cms.R</code></a></small>
+    <div class="hidden name"><code>cms.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>cms</span><span class='op'>(</span>
+  raw <span class='op'>=</span> <span class='cn'>NULL</span>,
+  runs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  idvariable <span class='op'>=</span> <span class='cn'>NULL</span>,
+  emptysize <span class='op'>=</span> <span class='cn'>NULL</span>,
+  setsize <span class='op'>=</span> <span class='cn'>NULL</span>,
+  variables <span class='op'>=</span> <span class='cn'>NULL</span>,
+  maxPC <span class='op'>=</span> <span class='fl'>4</span>,
+  clusters <span class='op'>=</span> <span class='fl'>3</span>,
+  seeding <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  showplot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  legendpos <span class='op'>=</span> <span class='st'>"top"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="cms.html">cms()</a></code> </p>
-        </td>
-        <td><p>Composite measures function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cms_load.html">cms_load()</a></code> </p>
-        </td>
-        <td><p>Loads data in the cms format into R</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="episet_full.html">episet_full</a></code> </p>
-        </td>
-        <td><p>Full data set rat epilepsy experiment</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_cms.html">plot_cms()</a></code> </p>
-        </td>
-        <td><p>Plot cms Clusters</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>raw</th>
+      <td><p>raw data input (filter the group variables first; each group 
+requires an extra analysis)</p></td>
+    </tr>
+    <tr>
+      <th>runs</th>
+      <td><p>the number of repeats (for feature aggregation)</p></td>
+    </tr>
+    <tr>
+      <th>idvariable</th>
+      <td><p>id variable name of the subjects (e.g. animal_id)</p></td>
+    </tr>
+    <tr>
+      <th>emptysize</th>
+      <td><p>fraction of data that limits the imputation threshold 
+(e.g. everything below emptysize=0.2 will be imputed; avoid when possible)</p></td>
+    </tr>
+    <tr>
+      <th>setsize</th>
+      <td><p>fraction size of the subsets (e.g., setsize=0.8 means that in
+each run 80<!-- % of the data are randomly chosen to do the cms)} --></p>
+<p>variablesexplicitly name the variables that shall be included in the
+cms analysis (yes, all of them!)</p>
+<p>maxPCthe maximum number of principal components that shall be
+evaluated (remember: this number must be smaller or equal as the number of
+analyzed variables)</p>
+<p>clustersthe number of clusters that shall be applied to the cms 
+analysis</p>
+<p>seedingsets the seeding constant (TRUE) or not (FALSE)</p>
+<p>showplotshow the distribution plot of the variables after cms 
+analysis</p>
+<p>legendposlegend position (shift to right when there are many vars)</p>
+<p>verbosesets the verbosity on variable handlings during the 
+calculation (default=FALSE)</p></td>
+    </tr>
     </table>
-  </div>
 
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
