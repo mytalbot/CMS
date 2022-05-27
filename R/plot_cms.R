@@ -8,7 +8,7 @@
 #' 
 #' @import ggplot2
 #' @import utils
-#' @import stats
+#' @import dplyr
 #' 
 #' @return Data frame with the cluster distributions/severity attributions.+
 #'

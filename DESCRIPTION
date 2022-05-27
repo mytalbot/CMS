@@ -18,8 +18,10 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-9062-4065")),
     person("Heidrun", "Potschka", role = "aut" ))
 Maintainer: Steven R. Talbot <talbot.steven@mh-hannover.de>
-Description: The packages uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to identify the most prominent 
-   features. Further, variables can be selected to perform cluster analysis on a selected subset of variables (composite score) to assess the cluster
+Description: Tabular data from rat epilepsy studies are used to apply a  
+   composite measures scheme (via PCA) to identify the most prominent 
+   features. Further, variables can be selected to perform cluster analysis on
+   a selected subset of variables (composite score) to assess the cluster
    distribution of severity in various experimental states and animal models.
 License: GPL-3
 Encoding: UTF-8
@@ -33,8 +35,7 @@ Suggests:
     kableExtra
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
-Imports: stats,
-    ggplot2,
+Imports: ggplot2,
     dplyr,
     utils,
     factoextra

@@ -31,7 +31,7 @@ requires an extra analysis)}
 (e.g. everything below emptysize=0.2 will be imputed; avoid when possible)}
 
 \item{setsize}{fraction size of the subsets (e.g., setsize=0.8 means that in
-each run 80% of the data are randomly chosen to do the cms)}
+each run 80 percent of the data are randomly chosen to do the cms)}
 
 \item{variables}{explicitly name the variables that shall be included in the
 cms analysis (yes, all of them!)}
@@ -50,13 +50,15 @@ analysis}
 
 \item{legendpos}{legend position (shift to right when there are many vars)}
 
-\item{verbose}{sets the verbosity on variable handlings during the 
+\item{verbose}{sets the verbosity on variable handling during the 
 calculation (default=FALSE)}
 }
 \value{
-Data frame with the cluster distributions/severity attributions.+
+List with feature frequency information and other useful information.
 }
 \description{
-The function takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsampling of the training data) and calculates
-general attributes as well as graphical distribution outputs.
+The function takes in the results from the cms_clusters function (frequency 
+distributions of each run of the 80 percent subsampling of the training data)
+and calculates #' general attributes as well as graphical distribution 
+outputs.
 }

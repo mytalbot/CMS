@@ -1,6 +1,6 @@
 ---
 title: "cms Vignette"
-author: "Steven R. Talbot, Ines Koska, Heidrun Potschka"
+author: "Steven R. Talbot, Heidrun Potschka"
 output: rmarkdown::html_vignette
 bibliography: references.bib
 vignette: >
@@ -20,7 +20,6 @@ knitr::opts_chunk$set(
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(include = TRUE)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
-library(cms)
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
@@ -195,8 +194,8 @@ features$FRQ %>%
 
 The result shows the following feature order in repeats=3, with the above 
 listed variables, using 4 principle components in 100 repeated runs:
-  BWB_WB (40%) > BWB_LT (32%) > Adrenal_glands (20%) > cort_fec (6%) > 
-  openfield_rat (1%) > social_interaction	(1%).
+  BWB_WB (40\%) > BWB_LT (32\%) > Adrenal_glands (20\%) > cort_fec (6\%) > 
+  openfield_rat (1\%) > social_interaction	(1\%).
 
 The remaining variables were not selected and/or not contributing to the PCA. 
 Therefore, they were not deemed to be relevant features.

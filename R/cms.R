@@ -1,7 +1,9 @@
 #' Composite measures function
 #' 
-#' The function takes in the results from the cms_clusters function (frequency distributions of each run of the 80 percent subsampling of the training data) and calculates
-#' general attributes as well as graphical distribution outputs.
+#' The function takes in the results from the cms_clusters function (frequency 
+#' distributions of each run of the 80 percent subsampling of the training data)
+#' and calculates #' general attributes as well as graphical distribution 
+#' outputs.
 #'
 #' @param raw raw data input (filter the group variables first; each group 
 #' requires an extra analysis)
@@ -10,7 +12,7 @@
 #' @param emptysize fraction of data that limits the imputation threshold 
 #' (e.g. everything below emptysize=0.2 will be imputed; avoid when possible)
 #' @param setsize fraction size of the subsets (e.g., setsize=0.8 means that in
-#' each run 80% of the data are randomly chosen to do the cms)
+#' each run 80 percent of the data are randomly chosen to do the cms)
 #' @param variables explicitly name the variables that shall be included in the
 #' cms analysis (yes, all of them!)
 #' @param maxPC the maximum number of principal components that shall be
@@ -22,18 +24,16 @@
 #' @param showplot show the distribution plot of the variables after cms 
 #' analysis
 #' @param legendpos legend position (shift to right when there are many vars)
-#' @param verbose sets the verbosity on variable handlings during the 
+#' @param verbose sets the verbosity on variable handling during the 
 #' calculation (default=FALSE)
 #' 
 #' @import ggplot2
 #' @import utils
-#' @import stats
 #' @import factoextra
 #' 
-#' @return Data frame with the cluster distributions/severity attributions.+
+#' @return List with feature frequency information and other useful information.
 #'
 #' @export
-#'
 #'
 
 cms <- function(raw=NULL, runs=NULL, idvariable=NULL, emptysize=NULL,

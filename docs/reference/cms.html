@@ -47,6 +47,10 @@
 
 
 <meta property="og:title" content="Composite measures function — cms" />
+<meta property="og:description" content="The function takes in the results from the cms_clusters function (frequency 
+distributions of each run of the 80 percent subsampling of the training data)
+and calculates #' general attributes as well as graphical distribution 
+outputs." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -127,6 +131,10 @@
     </div>
 
     <div class="ref-description">
+    <p>The function takes in the results from the cms_clusters function (frequency 
+distributions of each run of the 80 percent subsampling of the training data)
+and calculates #' general attributes as well as graphical distribution 
+outputs.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cms</span><span class='op'>(</span>
@@ -168,23 +176,47 @@ requires an extra analysis)</p></td>
     <tr>
       <th>setsize</th>
       <td><p>fraction size of the subsets (e.g., setsize=0.8 means that in
-each run 80<!-- % of the data are randomly chosen to do the cms)} --></p>
-<p>variablesexplicitly name the variables that shall be included in the
-cms analysis (yes, all of them!)</p>
-<p>maxPCthe maximum number of principal components that shall be
+each run 80 percent of the data are randomly chosen to do the cms)</p></td>
+    </tr>
+    <tr>
+      <th>variables</th>
+      <td><p>explicitly name the variables that shall be included in the
+cms analysis (yes, all of them!)</p></td>
+    </tr>
+    <tr>
+      <th>maxPC</th>
+      <td><p>the maximum number of principal components that shall be
 evaluated (remember: this number must be smaller or equal as the number of
-analyzed variables)</p>
-<p>clustersthe number of clusters that shall be applied to the cms 
-analysis</p>
-<p>seedingsets the seeding constant (TRUE) or not (FALSE)</p>
-<p>showplotshow the distribution plot of the variables after cms 
-analysis</p>
-<p>legendposlegend position (shift to right when there are many vars)</p>
-<p>verbosesets the verbosity on variable handlings during the 
+analyzed variables)</p></td>
+    </tr>
+    <tr>
+      <th>clusters</th>
+      <td><p>the number of clusters that shall be applied to the cms 
+analysis</p></td>
+    </tr>
+    <tr>
+      <th>seeding</th>
+      <td><p>sets the seeding constant (TRUE) or not (FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>showplot</th>
+      <td><p>show the distribution plot of the variables after cms 
+analysis</p></td>
+    </tr>
+    <tr>
+      <th>legendpos</th>
+      <td><p>legend position (shift to right when there are many vars)</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>sets the verbosity on variable handling during the 
 calculation (default=FALSE)</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>List with feature frequency information and other useful information.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
