@@ -21,7 +21,7 @@ assessment between animal models.
 *Please note:* the cms\_analysis and cms\_cluster functions are
 deprecated.
 
-[Click here for reading the outdated cms
+[Click here for reading the cms
 Vignette.](http://talbotsr.com/cms/articles/cms.html)
 
 ## Dependencies

@@ -24,7 +24,7 @@ The cms package uses tabular data from rat epilepsy studies and applies a compos
 
 *Please note:* the cms_analysis and cms_cluster functions are deprecated.
 
-[Click here for reading the outdated cms Vignette.](http://talbotsr.com/cms/articles/cms.html)
+[Click here for reading the cms Vignette.](http://talbotsr.com/cms/articles/cms.html)
 
 ## Dependencies
 The cms package has some dependencies. We advise installing/updating the following packages before using cms:  
