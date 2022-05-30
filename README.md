@@ -8,7 +8,7 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.org/mytalbot/cms.svg?branch=master)](https://travis-ci.org/r-lib/usethis)
+status](https://travis-ci.org/mytalbot/cms.svg?branch=cms_new)](https://travis-ci.org/r-lib/usethis)
 <!-- badges: end -->
 
 The cms package uses tabular data from rat epilepsy studies and applies
