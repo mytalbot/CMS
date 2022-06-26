@@ -94,7 +94,7 @@
 <a href="#composite-measures-schemes-cms" class="anchor"></a>Composite measures schemes (cms)</h1>
 <p>The cms package uses tabular data from rat epilepsy studies and applies a composite measures scheme (via PCA) to select the most prominent features. Further, variables can be selected to perform cluster analysis on a subset in order to build a composite score. Finally, the cluster distribution is displayed for the subgroups and allows severity assessment between animal models.</p>
 <p><em>Please note:</em> the cms_analysis and cms_cluster functions are deprecated.</p>
-<p><a href="http://talbotsr.com/cms/articles/cms.html">Click here for reading the outdated cms Vignette.</a></p>
+<p><a href="http://talbotsr.com/cms/articles/cms.html">Click here for reading the cms Vignette.</a></p>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a>Dependencies</h2>
@@ -132,7 +132,7 @@
                setsize    <span class="op">=</span> <span class="fl">0.8</span>,
                variables  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sacc_pref"</span>, <span class="st">"social_interaction"</span>, 
                               <span class="st">"burrowing_rat"</span>, <span class="st">"openfield_rat"</span><span class="op">)</span>,
-               maxPC      <span class="op">=</span> <span class="fl">4</span>,
+               maxPC      <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,
                clusters   <span class="op">=</span> <span class="fl">3</span>, 
                showplot   <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 

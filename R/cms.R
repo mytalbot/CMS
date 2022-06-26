@@ -15,9 +15,10 @@
 #' each run 80 percent of the data are randomly chosen to do the cms)
 #' @param variables explicitly name the variables that shall be included in the
 #' cms analysis (yes, all of them!)
-#' @param maxPC the maximum number of principal components that shall be
-#' evaluated (remember: this number must be smaller or equal as the number of
-#' analyzed variables)
+#' @param maxPC the maximum number of principal components (or range) that shall
+#' be evaluated (remember: this number must be smaller or equal as the number of
+#' analyzed variables). maxPC=2 looks at PC only, while maxPC=1:4 covers the 
+#' range of PC1 to PC4.
 #' @param clusters the number of clusters that shall be applied to the cms 
 #' analysis
 #' @param seeding sets the seeding constant (TRUE) or not (FALSE)
@@ -37,7 +38,7 @@
 #'
 
 cms <- function(raw=NULL, runs=NULL, idvariable=NULL, emptysize=NULL,
-                setsize=NULL,variables=NULL, maxPC=4, clusters=3, seeding=TRUE, 
+                setsize=NULL,variables=NULL, maxPC=1:4, clusters=3, seeding=TRUE, 
                 showplot=TRUE, legendpos="top", verbose=FALSE){
   
   # set seeding constant?
@@ -84,33 +85,51 @@ cms <- function(raw=NULL, runs=NULL, idvariable=NULL, emptysize=NULL,
       # Do the PCA
       res       <- prcomp(traindat, center=TRUE, scale = TRUE)
       contribs  <- get_pca_var(res)$contrib
-      contribs  <- contribs[,1:maxPC]
+      contribs  <- contribs[,maxPC]
+      
       sortVars  <- NA
-      sortVars  <- apply(contribs, 1, sum, na.rm=TRUE)
-      sortVars  <- sortVars[order(sortVars,decreasing = TRUE)]
+      if(length(maxPC)==1){
+        sortVars  <- contribs
+        sortVars  <- sortVars[order(sortVars,decreasing = TRUE)  ]
+      }else{
+        sV        <- apply(contribs, 1, sum, na.rm=TRUE)
+        sortVars  <- sV[order(sV,decreasing = TRUE),   drop = FALSE]
+      }
       ELS       <- rbind(ELS , names(sortVars)  )
-      
-      
+
       # cumulative variance
       vars      <- apply(res$x, 2, var,na.rm=TRUE)   
       props     <- round(vars / sum(vars),3)
-      props     <- sum(props[1:maxPC])
+      props     <- sum(props[maxPC])
       
       InfoContent <- rbind(InfoContent, data.frame(run         = j,
-                                                   maxPC       = maxPC,
+                                                   maxPC       = paste(maxPC,collapse = ","),
                                                    CumVariance = round(props,2)))
       # get the PCA scores (must equal the row numbers in traindat)
-      scores    <- res$x[,1:maxPC]
+      scores    <- res$x[,maxPC]
   
       # extract the FIRST TWO PCs for plotting the PCA; add these to traindat 
-      traindat$PC1 <- scores[,1]
-      traindat$PC2 <- scores[,2]
+    
       
-      # calculate the composite score from the "scores" (simple sum score)
-      traindat$compscore <- NA
-      traindat$compscore <- apply(scores, 1, sum, na.rm = TRUE)
-      traindat$compscore <- round( traindat$compscore,3)
+      if(length(maxPC)==1){
+        traindat$PC1 <- as.numeric(scores)
+        
+        # calculate the composite score from the "scores" (simple sum score)
+        traindat$compscore <- NA
+        traindat$compscore <- scores
+        traindat$compscore <- round( traindat$compscore,3)
+  
+      }else{
+        traindat$PC1 <- scores[,1]
+        traindat$PC2 <- scores[,2]
+        
+        # calculate the composite score from the "scores" (simple sum score)
+        traindat$compscore <- NA
+        traindat$compscore <- apply(scores, 1, sum, na.rm = TRUE)
+        traindat$compscore <- round( traindat$compscore,3)
+      }
       
+
       # clustering of the score
       cl                 <- kmeans(traindat$compscore, clusters)
       traindat$cluster   <- cl$cluster

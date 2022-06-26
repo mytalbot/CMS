@@ -95,7 +95,7 @@
 <div id="about-cms-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#about-cms-package" class="anchor"></a>About cms package</h2>
-<p>In our paper“Design of composite measure schemes for comparative severity assessment in animal-basedneuroscience research: a case study focussed on rat epilepsy models” <span class="citation">(Dijk et al. 2020)</span>, we introduce composite measures schemes (cms) to assess severity in rat epilepsy models. We suggest a PCA-based algorithm to assess a plethora of outcome variables for their suitability as features in a simple composite score for comparative severity assessment.</p>
+<p>In our paper “Design of composite measure schemes for comparative severity assessment in animal-basedneuroscience research: a case study focussed on rat epilepsy models” <span class="citation">(Dijk et al. 2020)</span>, we introduce composite measures schemes (cms) to assess severity in rat epilepsy models. We suggest a PCA-based algorithm to assess a plethora of outcome variables for their suitability as features in a simple composite score for comparative severity assessment.</p>
 <p>This vignette covers the basic functions for cms analysis in R <span class="citation">(R Core Team 2019)</span>.</p>
 </div>
 <div id="package-requirements" class="section level1">
@@ -221,7 +221,7 @@ variables (e.g., burrowing, corticosterone, openfield,…)</p>
                  idvariable <span class="op">=</span> <span class="st">"animal_id"</span>,
                  setsize    <span class="op">=</span> <span class="fl">0.8</span>,
                  variables  <span class="op">=</span> <span class="va">variables</span>,
-                 maxPC      <span class="op">=</span> <span class="fl">4</span>,
+                 maxPC      <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, 
                  clusters   <span class="op">=</span> <span class="fl">3</span>, 
                  showplot   <span class="op">=</span> <span class="cn">FALSE</span>,
                  legendpos  <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
@@ -254,13 +254,13 @@ perc
 1
 </td>
 <td style="text-align:left;">
-burrowing_rat
+openfield_rat
 </td>
 <td style="text-align:right;">
-53
+268
 </td>
 <td style="text-align:right;">
-17.67
+89.33
 </td>
 </tr>
 <tr>
@@ -268,7 +268,63 @@ burrowing_rat
 1
 </td>
 <td style="text-align:left;">
+Sacc_pref
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+10.67
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
 openfield_rat
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+10.67
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Sacc_pref
+</td>
+<td style="text-align:right;">
+268
+</td>
+<td style="text-align:right;">
+89.33
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+burrowing_rat
+</td>
+<td style="text-align:right;">
+282
+</td>
+<td style="text-align:right;">
+94.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+social_interaction
 </td>
 <td style="text-align:right;">
 18
@@ -279,114 +335,30 @@ openfield_rat
 </tr>
 <tr>
 <td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-Sacc_pref
-</td>
-<td style="text-align:right;">
-117
-</td>
-<td style="text-align:right;">
-39.00
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-social_interaction
-</td>
-<td style="text-align:right;">
-112
-</td>
-<td style="text-align:right;">
-37.33
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
+4
 </td>
 <td style="text-align:left;">
 burrowing_rat
 </td>
 <td style="text-align:right;">
-75
+18
 </td>
 <td style="text-align:right;">
-25.00
+6.00
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-openfield_rat
-</td>
-<td style="text-align:right;">
-82
-</td>
-<td style="text-align:right;">
-27.33
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-Sacc_pref
-</td>
-<td style="text-align:right;">
-70
-</td>
-<td style="text-align:right;">
-23.33
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
+4
 </td>
 <td style="text-align:left;">
 social_interaction
 </td>
 <td style="text-align:right;">
-73
+282
 </td>
 <td style="text-align:right;">
-24.33
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:left;">
-burrowing_rat
-</td>
-<td style="text-align:right;">
-83
-</td>
-<td style="text-align:right;">
-27.67
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:left;">
-openfield_rat
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-36.00
+94.00
 </td>
 </tr>
 </tbody>
@@ -397,7 +369,7 @@ openfield_rat
 <div id="cluster-analysis" class="section level1">
 <h1 class="hasAnchor">
 <a href="#cluster-analysis" class="anchor"></a>Cluster analysis</h1>
-<p>The cms function also calculates a composite score from the principal component scores. This “compscore” is simply the sum of the 1 to <code>maxPC</code> PCA scores. The result is stored in the result of the cms function as a list object. In the upper example, we can access this information with features<span class="math inline">\(reportdata\)</span>compscore.</p>
+<p>The cms function also calculates a composite score from the principal component scores. This “compscore” is simply the sum of the 1 to <code>maxPC</code> PCA scores. The result is stored in the result of the cms function as a list object. In the upper example, we can access this information with <code>features$reportdata$compscore</code>.</p>
 <p>The observant reader might have noticed the clusters=3 object in the cms function. This is the number of clusters that shall be applied to the “compscore”. Unfortunately, this is a heuristic. This means: the user will have to figure out how many clusters are correct for the data. The cluster information, or better: the distribution of the clusters are characteristic for specific subgroups.</p>
 <p>Fortunately, the cms function takes care of the heuristic determination of the number of clusters. The weighted sums of squares are calculated with the 1 to <code>maxPC</code> PCA scores of the data and the selected number of clusters is marked with a vertical line. With the Kaiser-Guttman criterion (“ellbow method”) the ideal number of clusters can be inferred.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -443,10 +415,10 @@ chem
 1
 </td>
 <td style="text-align:right;">
-3629
+3955
 </td>
 <td style="text-align:right;">
-63.1899704
+68.8664461
 </td>
 </tr>
 <tr>
@@ -460,10 +432,10 @@ chem
 2
 </td>
 <td style="text-align:right;">
-2114
+1788
 </td>
 <td style="text-align:right;">
-36.8100296
+31.1335539
 </td>
 </tr>
 <tr>
@@ -477,10 +449,10 @@ elec
 1
 </td>
 <td style="text-align:right;">
-4154
+4462
 </td>
 <td style="text-align:right;">
-75.5272727
+81.1272727
 </td>
 </tr>
 <tr>
@@ -494,10 +466,10 @@ elec
 2
 </td>
 <td style="text-align:right;">
-1324
+1026
 </td>
 <td style="text-align:right;">
-24.0727273
+18.6545455
 </td>
 </tr>
 <tr>
@@ -506,261 +478,6 @@ naive
 </td>
 <td style="text-align:left;">
 elec
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-0.4000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-naive
-</td>
-<td style="text-align:left;">
-kind
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-657
-</td>
-<td style="text-align:right;">
-22.7571874
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-naive
-</td>
-<td style="text-align:left;">
-kind
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2093
-</td>
-<td style="text-align:right;">
-72.4974021
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-naive
-</td>
-<td style="text-align:left;">
-kind
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-137
-</td>
-<td style="text-align:right;">
-4.7454105
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SE
-</td>
-<td style="text-align:left;">
-chem
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1580
-</td>
-<td style="text-align:right;">
-16.9146772
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SE
-</td>
-<td style="text-align:left;">
-chem
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-3986
-</td>
-<td style="text-align:right;">
-42.6720908
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SE
-</td>
-<td style="text-align:left;">
-chem
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3775
-</td>
-<td style="text-align:right;">
-40.4132320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SE
-</td>
-<td style="text-align:left;">
-elec
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-886
-</td>
-<td style="text-align:right;">
-14.3644617
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SE
-</td>
-<td style="text-align:left;">
-elec
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2611
-</td>
-<td style="text-align:right;">
-42.3313878
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SE
-</td>
-<td style="text-align:left;">
-elec
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-2671
-</td>
-<td style="text-align:right;">
-43.3041505
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SE
-</td>
-<td style="text-align:left;">
-kind
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-811
-</td>
-<td style="text-align:right;">
-27.9462440
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SE
-</td>
-<td style="text-align:left;">
-kind
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-1919
-</td>
-<td style="text-align:right;">
-66.1268091
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SE
-</td>
-<td style="text-align:left;">
-kind
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-172
-</td>
-<td style="text-align:right;">
-5.9269469
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-sham
-</td>
-<td style="text-align:left;">
-chem
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-4774
-</td>
-<td style="text-align:right;">
-66.4532294
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-sham
-</td>
-<td style="text-align:left;">
-chem
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-2398
-</td>
-<td style="text-align:right;">
-33.3797327
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-sham
-</td>
-<td style="text-align:left;">
-chem
 </td>
 <td style="text-align:right;">
 3
@@ -769,7 +486,245 @@ chem
 12
 </td>
 <td style="text-align:right;">
-0.1670379
+0.2181818
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+760
+</td>
+<td style="text-align:right;">
+26.3249047
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2027
+</td>
+<td style="text-align:right;">
+70.2112920
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+naive
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+3.4638033
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1545
+</td>
+<td style="text-align:right;">
+16.5399850
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4330
+</td>
+<td style="text-align:right;">
+46.3547800
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3466
+</td>
+<td style="text-align:right;">
+37.1052350
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+967
+</td>
+<td style="text-align:right;">
+15.6776913
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2596
+</td>
+<td style="text-align:right;">
+42.0881971
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+elec
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2605
+</td>
+<td style="text-align:right;">
+42.2341115
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+890
+</td>
+<td style="text-align:right;">
+30.6685045
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1892
+</td>
+<td style="text-align:right;">
+65.1964163
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SE
+</td>
+<td style="text-align:left;">
+kind
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+4.1350793
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4990
+</td>
+<td style="text-align:right;">
+69.4599109
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sham
+</td>
+<td style="text-align:left;">
+chem
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2194
+</td>
+<td style="text-align:right;">
+30.5400891
 </td>
 </tr>
 <tr>
@@ -783,10 +738,10 @@ elec
 1
 </td>
 <td style="text-align:right;">
-3962
+4152
 </td>
 <td style="text-align:right;">
-65.9344317
+69.0963555
 </td>
 </tr>
 <tr>
@@ -800,10 +755,10 @@ elec
 2
 </td>
 <td style="text-align:right;">
-1837
+1854
 </td>
 <td style="text-align:right;">
-30.5708105
+30.8537194
 </td>
 </tr>
 <tr>
@@ -817,10 +772,10 @@ elec
 3
 </td>
 <td style="text-align:right;">
-210
+3
 </td>
 <td style="text-align:right;">
-3.4947579
+0.0499251
 </td>
 </tr>
 <tr>
@@ -834,10 +789,10 @@ kind
 1
 </td>
 <td style="text-align:right;">
-1353
+1478
 </td>
 <td style="text-align:right;">
-47.2086532
+51.5701326
 </td>
 </tr>
 <tr>
@@ -851,10 +806,10 @@ kind
 2
 </td>
 <td style="text-align:right;">
-1362
+1313
 </td>
 <td style="text-align:right;">
-47.5226797
+45.8129798
 </td>
 </tr>
 <tr>
@@ -868,10 +823,10 @@ kind
 3
 </td>
 <td style="text-align:right;">
-151
+75
 </td>
 <td style="text-align:right;">
-5.2686671
+2.6168876
 </td>
 </tr>
 </tbody>

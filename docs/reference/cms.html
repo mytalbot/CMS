@@ -144,7 +144,7 @@ outputs.</p>
   emptysize <span class='op'>=</span> <span class='cn'>NULL</span>,
   setsize <span class='op'>=</span> <span class='cn'>NULL</span>,
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
-  maxPC <span class='op'>=</span> <span class='fl'>4</span>,
+  maxPC <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,
   clusters <span class='op'>=</span> <span class='fl'>3</span>,
   seeding <span class='op'>=</span> <span class='cn'>TRUE</span>,
   showplot <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -185,9 +185,10 @@ cms analysis (yes, all of them!)</p></td>
     </tr>
     <tr>
       <th>maxPC</th>
-      <td><p>the maximum number of principal components that shall be
-evaluated (remember: this number must be smaller or equal as the number of
-analyzed variables)</p></td>
+      <td><p>the maximum number of principal components (or range) that shall
+be evaluated (remember: this number must be smaller or equal as the number of
+analyzed variables). maxPC=2 looks at PC only, while maxPC=1:4 covers the 
+range of PC1 to PC4.</p></td>
     </tr>
     <tr>
       <th>clusters</th>

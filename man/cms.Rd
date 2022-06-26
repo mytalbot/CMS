@@ -11,7 +11,7 @@ cms(
   emptysize = NULL,
   setsize = NULL,
   variables = NULL,
-  maxPC = 4,
+  maxPC = 1:4,
   clusters = 3,
   seeding = TRUE,
   showplot = TRUE,
@@ -36,9 +36,10 @@ each run 80 percent of the data are randomly chosen to do the cms)}
 \item{variables}{explicitly name the variables that shall be included in the
 cms analysis (yes, all of them!)}
 
-\item{maxPC}{the maximum number of principal components that shall be
-evaluated (remember: this number must be smaller or equal as the number of
-analyzed variables)}
+\item{maxPC}{the maximum number of principal components (or range) that shall
+be evaluated (remember: this number must be smaller or equal as the number of
+analyzed variables). maxPC=2 looks at PC only, while maxPC=1:4 covers the 
+range of PC1 to PC4.}
 
 \item{clusters}{the number of clusters that shall be applied to the cms 
 analysis}

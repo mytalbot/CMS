@@ -61,7 +61,7 @@ usecase <- cms(raw        = episet_full,
                setsize    = 0.8,
                variables  = c("Sacc_pref", "social_interaction", 
                               "burrowing_rat", "openfield_rat"),
-               maxPC      = 4,
+               maxPC      = 1:4,
                clusters   = 3, 
                showplot   = FALSE)
 
